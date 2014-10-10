@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 
 app.set('views', './views');
-app.set('view engine', 'jade');
+app.set('view engine', 'html');
 app.engine('jade', require('jade').__express);
 
 app.get('/', function (req, res) {
