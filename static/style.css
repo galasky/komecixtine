@@ -1,0 +1,5 @@
+#global {
+  margin-left: auto;
+  margin-right: auto;
+  width: ...; /* largeur obligatoire pour être centré */
+}
