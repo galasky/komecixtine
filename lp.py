@@ -6,7 +6,7 @@ def handle(environ, start_response):
     start_response('200 OK', [('Content-Type', 'text/html')])
     yield ' ' * 1200
     yield '<html><body><h1>Hi '
-    gevent.sleep(1)
+    gevent.sleep(10)
     yield 'There</h1></body></html>'
 
 server = pywsgi.WSGIServer(('0.0.0.0', 1234), handle)
