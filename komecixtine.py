@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/komecixtine")
 def blog():
-    return "bienvenue sur le jeu komecixtine"
+    return render_template("index.html")
 
 @app.route("/")
 def route():
