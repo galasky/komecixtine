@@ -6,7 +6,7 @@ app.set('view engine', 'jade');
 app.engine('jade', require('jade').__express);
 
 app.get('/', function (req, res) {
-  res.render('index', { title: 'Hey', message: 'Hello there!'});
+    res.render('index', { title: 'Hey', message: 'Hello there!'});
 })
 
 var server = app.listen(3000, function() {
