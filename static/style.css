@@ -5,7 +5,8 @@
     margin-top: 20%;
 }
 
-title {
+#title {
+    font-family: police;
     margin-right: auto;
     margin-left: auto;
     color: #000;
