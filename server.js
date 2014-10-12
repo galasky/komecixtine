@@ -1,18 +1,18 @@
-var express = require('express');
-var app = express();
-var fs = require('fs');
+var app = require('express')();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
 app.use("/static", express.static(__dirname + '/static'));
 
-app.get('/', function(req, res){
-    fs.readFile(__dirname + '/views/index.html',function (err, data){
-        res.writeHead(200, {'Content-Type': 'text/html','Content-Length':data.length});
-        res.write(data);
-        res.end();
-    });
+server.listen(8888);
+
+app.get('/', function (req, res) {
+  res.sendfile(__dirname + '/views/index.html');
 });
 
-var server = app.listen(8888, function() {
-    console.log("dirname : " + __dirname);
-    console.log('Listening on port %d', server.address().port);
+io.on('connection', function (socket) {
+  socket.emit('news', { hello: 'world' });
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
 });
