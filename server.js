@@ -5,7 +5,9 @@ var io = require('socket.io')(server);
 
 app.use("/static", express.static(__dirname + '/static'));
 
-server.listen(8888);
+server.listen(8888, function() {
+    console.log("the server is started");
+});
 
 app.get('/', function (req, res) {
   res.sendfile(__dirname + '/views/index.html');
