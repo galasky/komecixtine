@@ -28,13 +28,13 @@
           <div class="modal-body">
             <p>Choose your pseudo, the number of players and the room name</p>
             <p class="text-warning"><small>waring</small></p>
-	    <input type="email" class="form-control" id="Pseudo" placeholder="Pseudo">
-	    <input type="email" class="form-control" id="NbPlayer" placeholder="Number of players">
-	    <input type="email" class="form-control" id="RoomName" placeholder="Room name">
+	    <input type="email" class="form-control" id="CPseudo" placeholder="Pseudo">
+	    <input type="email" class="form-control" id="CNbPlayer" placeholder="Number of players">
+	    <input type="email" class="form-control" id="CRoomName" placeholder="Room name">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Create</button>
+            <button id="Create" type="button" class="btn btn-primary">Create</button>
           </div>
         </div>
       </div>
@@ -50,12 +50,12 @@
           <div class="modal-body">
             <p>Choose your pseudo and the room name</p>
             <p class="text-warning"><small>warning</small></p>
-	    <input type="email" class="form-control" id="Pseudo" placeholder="Pseudo">
-	    <input type="email" class="form-control" id="RoomName" placeholder="Room name">
+	    <input type="email" class="form-control" id="JPseudo" placeholder="Pseudo">
+	    <input type="email" class="form-control" id="JRoomName" placeholder="Room name">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-success">Join</button>
+            <button id="Join" type="button" class="btn btn-success">Join</button>
           </div>
         </div>
       </div>
@@ -70,5 +70,10 @@
     $('#BtnJoin').click(function(){
     $("#MdlJoin").modal('show');
     });
+
+    $('#Create').click(function(){
+    $("#MdlJoin").modal('show');
+    });
+
   </script>
 </html>
