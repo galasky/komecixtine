@@ -5,7 +5,7 @@ var io = require('socket.io')(server);
 
 app.use("/static", express.static(__dirname + '/static'));
 
-server.listen(8888, function() {
+server.listen(80, function() {
     console.log("the server is started");
 });
 
