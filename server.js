@@ -2,7 +2,7 @@ var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
-app.use("/static", express.static(__dirname + '/static'));
+app.use("/static", app.static(__dirname + '/static'));
 
 server.listen(8888);
 
