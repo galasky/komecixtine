@@ -9,8 +9,12 @@ server.listen(80, function() {
     console.log("the server is started");
 });
 
-app.get('/', function (req, res) {
+app.get('/komecixtine', function (req, res) {
   res.sendfile(__dirname + '/views/index.html');
+});
+
+app.get('/profil', function (req, res) {
+  res.sendfile(__dirname + '/views/profil.html');
 });
 
 io.on('connection', function (socket) {
