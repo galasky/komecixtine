@@ -1,9 +1,11 @@
 var express = require('express');
 var app = require('express')();
+
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
 app.use("/static", express.static(__dirname + '/static'));
+app.set('view engine', 'jade');
 
 server.listen(80, function() {
     console.log("the server is started");
@@ -15,12 +17,14 @@ app.get('/komecixtine', function (req, res) {
 
 app.get('/komecixtine/create', function (req, res) {
     console.log("create room : " + req.param("room"));
-    res.sendfile(__dirname + '/views/create.html');
+    res.render(__dirname + '/views/create.html', { room: res.param("room"), name: "galasky"});
+//    res.sendfile(__dirname + '/views/create.html');
 });
 
 app.get('/komecixtine/join', function (req, res) {
     console.log("join room : " + req.param("room"));
-    res.sendfile(__dirname + '/views/join.html');
+    res.render(__dirname + '/views/join', { room: res.param("room"), name: "galasky"});
+//    res.sendfile(__dirname + '/views/join.html');
 });
 
 app.get('/profil', function (req, res) {
