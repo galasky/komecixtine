@@ -75,14 +75,14 @@
     $('#Create').click(function(){
         $.get( "http://galasky.fr/komecixtine/create", function( data ) {
             $( ".result" ).html( data );
-           alert( "Load was performed." );
+           alert( "Load was performed." + data );
         });
     });
 
     $('#Join').click(function(){
         $.get( "http://galasky.fr/komecixtine/join", function( data ) {
             $( ".result" ).html( data );
-            alert( "Load was performed." );
+            alert( "Load was performed." + data );
         });
     });
   </script>
