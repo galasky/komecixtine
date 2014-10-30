@@ -30,6 +30,7 @@ app.get('/komecixtine/create', function (req, res) {
         console.log("error : room already exist");
     } else {
         console.log("create room : " + room);
+        listRoom[room] = new Room(room, 4);
     }
     res.render(__dirname + '/views/create', { room: room, pseudo: req.param("pseudo")});
 });
