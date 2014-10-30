@@ -13,6 +13,14 @@ app.get('/komecixtine', function (req, res) {
   res.sendfile(__dirname + '/views/index.html');
 });
 
+app.get('/komecixtine/create', function (req, res) {
+    res.sendfile(__dirname + '/views/create.html');
+});
+
+app.get('/komecixtine/join', function (req, res) {
+    res.sendfile(__dirname + '/views/join.html');
+});
+
 app.get('/profil', function (req, res) {
   res.sendfile(__dirname + '/views/profil.html');
 });

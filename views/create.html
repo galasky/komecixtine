@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Komecixtine</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/static/style.css">  
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    </script>
+  </head>
+  <body>
+    create
+  </body>
+  <script type="text/javascript">
+
+  </script>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+      var socket = io.connect('http://galasky.fr');
+      socket.on('news', function (data) {
+          console.log(data);
+          socket.emit('my other event', { my: CPseudo });
+      });
+  </script>
+</html>

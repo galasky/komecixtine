@@ -77,11 +77,11 @@
   <script src="/socket.io/socket.io.js"></script>
   <script>
       $('#Create').click(function(){
-          var socket = io.connect('http://galasky.fr');
-          socket.on('news', function (data) {
-              console.log(data);
-              socket.emit('my other event', { my: 'data' });
-          });
+          $.get("http://galasky.fr/komecixtine/create", { room:"test", pseudo:"Donald" });
+      });
+
+      $('#Join').click(function(){
+          $.get("http://galasky.fr/komecixtine/join", { room: "test", pseudo:"Donald" });
       });
 
   </script>
