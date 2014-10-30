@@ -12,20 +12,37 @@ server.listen(80, function() {
     console.log("the server is started");
 });
 
+function Room(roomName,maxPlayer) {
+    this.roomName=roomName;
+    this.maxPlayer=maxPlayer;
+}
 
+var listRoom = {};
 
 app.get('/komecixtine', function (req, res) {
   res.sendfile(__dirname + '/views/index.html');
 });
 
 app.get('/komecixtine/create', function (req, res) {
-    console.log("create room : " + req.param("room"));
-    res.render(__dirname + '/views/create', { room: req.param("room"), pseudo: req.param("pseudo")});
+    var room = req.param("room");
+
+    if (room in listRoom) {
+        console.log("error : room already exist");
+    } else {
+        console.log("create room : " + room);
+    }
+    res.render(__dirname + '/views/create', { room: room, pseudo: req.param("pseudo")});
 });
 
 app.get('/komecixtine/join', function (req, res) {
-    console.log("join room : " + req.param("room"));
-    res.render(__dirname + '/views/join', { room: req.param("room"), pseudo: req.param("pseudo")});
+    var room = req.param("room");
+
+    if (room in listRoom) {
+        console.log("join room : " + room);
+    } else {
+        console.log("error : room doesn't exist");
+    }
+    res.render(__dirname + '/views/join', { room: room, pseudo: req.param("pseudo")});
 });
 
 app.get('/profil', function (req, res) {
