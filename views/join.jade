@@ -2,7 +2,7 @@ doctype html
 html(lang="en")
     head
         title= name
-        script(type='text/javascript').
+        script(src='/socket.io/socket.io.js').
             var socket = io.connect('http://galasky.fr');
             socket.on('news', function (data) {
                 console.log(data);
