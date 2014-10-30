@@ -7,7 +7,7 @@ html(lang="en")
             var socket = io.connect('http://galasky.fr');
             socket.on('news', function (data) {
                 console.log(data);
-                socket.emit('create', { room: "create" });
+                socket.emit('create', { room: room });
                 });
     body
         h1= room
