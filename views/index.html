@@ -72,17 +72,18 @@
     $("#MdlJoin").modal('show');
     });
 
+    $('#Create').click(function(){
+        $.get("http://galasky.fr/komecixtine/create", { room:"test", pseudo:"Donald" });
+    });
+
+    $('#Join').click(function(){
+        $.get("http://galasky.fr/komecixtine/join", { room: "test", pseudo:"Donald" });
+    });
   </script>
 
   <script src="/socket.io/socket.io.js"></script>
   <script>
-      $('#Create').click(function(){
-          $.get("http://galasky.fr/komecixtine/create", { room:"test", pseudo:"Donald" });
-      });
 
-      $('#Join').click(function(){
-          $.get("http://galasky.fr/komecixtine/join", { room: "test", pseudo:"Donald" });
-      });
 
   </script>
 </html>
