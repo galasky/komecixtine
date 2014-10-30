@@ -56,10 +56,10 @@ io.on('connection', function (socket) {
     socket.emit('news', { hello: 'world' });
 
     socket.on('create', function (data) {
-        console.log("creation de la room " + data.room);
+//        console.log("creation de la room " + data.room);
     });
 
     socket.on('join', function (data) {
-        console.log("join de la room " + data.room);
+//        console.log("join de la room " + data.room);
     });
 });
