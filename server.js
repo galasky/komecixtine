@@ -20,7 +20,7 @@ app.get('/komecixtine', function (req, res) {
 
 app.get('/komecixtine/create', function (req, res) {
     console.log("create room : " + req.param("room"));
-    res.render(__dirname + '/views/create', { room: res.param("room"), name: "galasky"});
+    res.render(__dirname + '/views/create', { room: req.param("room"), name: "galasky"});
 });
 
 app.get('/komecixtine/join', function (req, res) {
