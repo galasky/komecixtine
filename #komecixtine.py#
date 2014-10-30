@@ -1,0 +1,15 @@
+Bfrom flask import Flask
+from flask import render_template
+
+a1;2802;0cpp = Flask(__name__)
+
+@app.route("/komecixtine")
+def blog():
+    return "bienvenue sur le jeu komecixtine"
+
+@app.route("/")
+def route():
+    return "Ya rien ici degage ! Cordialement."
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=4242, debug=True)
