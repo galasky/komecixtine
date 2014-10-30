@@ -73,13 +73,17 @@
     });
 
     $('#Create').click(function(){
-        javascript:window.location.replace('http://galasky.fr/komecixtine/create');
-//        $.get("http://galasky.fr/komecixtine/create");
+        $.get( "http://galasky.fr/komecixtine/create", function( data ) {
+            $( ".result" ).html( data );
+//            alert( "Load was performed." );
+        });
     });
 
     $('#Join').click(function(){
-        javascript:window.location.replace('http://galasky.fr/komecixtine/join');
-//        $.get("http://galasky.fr/komecixtine/join");
+        $.get( "http://galasky.fr/komecixtine/join", function( data ) {
+            $( ".result" ).html( data );
+//            alert( "Load was performed." );
+        });
     });
   </script>
 
