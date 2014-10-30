@@ -61,8 +61,8 @@
       </div>
     </div>    
   </body>
-  <script type="text/javascript">
 
+  <script type="text/javascript">
 
     $('#BtnCreate').click(function(){
     $("#MdlCreate").modal('show');
@@ -75,25 +75,13 @@
     $('#Create').click(function(){
         var room = document.getElementById("CRoomName").value;
         document.location.href = "http://galasky.fr/komecixtine/create?" + "room=" + room;
-//        $.get( "http://galasky.fr/komecixtine/create", function( data ) {
-//            $( ".result" ).html( data );
-//            $( "html").append(data);
-//        });
     });
 
     $('#Join').click(function(){
         var room = document.getElementById("JRoomName").value;
         document.location.href = "http://galasky.fr/komecixtine/join?" + "room=" + room;
-//        $.get( "http://galasky.fr/komecixtine/join", function( data ) {
-//            $( ".result" ).html( data );
-//            $( "html").append(data);
-//        });
     });
-  </script>
-
-  <script src="/socket.io/socket.io.js"></script>
-  <script>
-
 
   </script>
+
 </html>
