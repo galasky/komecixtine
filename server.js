@@ -33,7 +33,6 @@ app.get('/profil', function (req, res) {
 });
 
 
-
 io.on('connection', function (socket) {
     console.log("connection");
   socket.emit('news', { hello: 'world' });

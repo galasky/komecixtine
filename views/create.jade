@@ -1,5 +1,17 @@
-html
+doctype html
+html(lang="en")
     head
-        title!= room
+        title= name
+        script(type='text/javascript').
+            var socket = io.connect('http://galasky.fr');
+            socket.on('news', function (data) {
+                console.log(data);
+                socket.emit('my other event', { my: CPseudo });
+                });
     body
-        h1!= name
+        h1= room
+        p.
+          Jade is a terse and simple
+          templating language with a
+          strong focus on performance
+          and powerful features.
