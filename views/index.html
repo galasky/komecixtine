@@ -68,7 +68,7 @@
     $("#MdlCreate").modal('show');
     });
 
-    $('#Create').click(function(){
+    $('#BtnJoin').click(function(){
     $("#MdlJoin").modal('show');
     });
 
@@ -76,7 +76,7 @@
 
   <script src="/socket.io/socket.io.js"></script>
   <script>
-      $('#BtnJoin').click(function(){
+      $('#Create').click(function(){
           var socket = io.connect('http://localhost');
           socket.on('news', function (data) {
               console.log(data);
