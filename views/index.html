@@ -74,12 +74,14 @@
 
     $('#Create').click(function(){
         var room = document.getElementById("CRoomName").value;
-        document.location.href = "http://galasky.fr/komecixtine/create?" + "room=" + room;
+        var pseudo = document.getElementById("JPseudo").value;
+        document.location.href = "http://galasky.fr/komecixtine/create?" + "room=" + room + "&pseudo=" + pseudo;
     });
 
     $('#Join').click(function(){
         var room = document.getElementById("JRoomName").value;
-        document.location.href = "http://galasky.fr/komecixtine/join?" + "room=" + room;
+        var pseudo = document.getElementById("JPseudo").value;
+        document.location.href = "http://galasky.fr/komecixtine/join?" + "room=" + room + "&pseudo=" + pseudo;
     });
 
   </script>
