@@ -14,10 +14,12 @@ app.get('/komecixtine', function (req, res) {
 });
 
 app.get('/komecixtine/create', function (req, res) {
+    console.log("create room : " + req.param("room"));
     res.sendfile(__dirname + '/views/create.html');
 });
 
 app.get('/komecixtine/join', function (req, res) {
+    console.log("join room : " + req.param("room"));
     res.sendfile(__dirname + '/views/join.html');
 });
 
