@@ -31,9 +31,8 @@ function Room(roomName,maxPlayer) {
     this.addPlayer = function(player) {
         this.listPlayer[this.nbPlayer] = player;
         this.nbPlayer += 1;
-        var i;
-        for (i = 0; i < maxPlayer; i++) {
-            this.listPlayer[i].emitNewPlayer(player);
+        for (var value of this.listPlayer.values()) {
+            value.emitNewPlayer(player);
         }
     };
 }
