@@ -40,7 +40,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button id="Create" type="button" class="btn btn-primary">Create</button>
+            <button id="Create" type="button" class="btn btn-primary disabled">Create</button>
           </div>
         </div>
       </div>
@@ -61,7 +61,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button id="Join" type="button" class="btn btn-success">Join</button>
+            <button id="Join" type="button" class="btn btn-success disabled">Join</button>
           </div>
         </div>
       </div>
@@ -104,10 +104,10 @@
       socket.on("rspTestRoomName", function(data) {
         if (data.rsp) {
             document.getElementById("FCRoomName").setAttribute("class", "form-group has-success");
-            document.getElementById("Create").prop('disabled', false);
+            document.getElementById("Create").setAttribute("class", "btn btn-primary");
         } else {
             document.getElementById("FCRoomName").setAttribute("class", "form-group has-error");
-            document.getElementById("Create").prop('disabled', true);
+            document.getElementById("Create").setAttribute("class", "btn btn-primary disabled");
         }
       });
   </script>
