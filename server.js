@@ -47,8 +47,9 @@ app.get('/komecixtine/join', function (req, res) {
 });
 
 app.get('/profil', function (req, res) {
-  res.sendfile(__dirname + '/views/profil.html');
+  res.render(__dirname + '/views/profil.html');
 });
+
 
 
 io.on('connection', function (socket) {
@@ -61,5 +62,9 @@ io.on('connection', function (socket) {
 
     socket.on('join', function (data) {
 //        console.log("join de la room " + data.room);
+    });
+
+    socket.on('disconnect', function () {
+        console.log("disconnected");
     });
 });
