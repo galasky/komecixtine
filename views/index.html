@@ -99,6 +99,13 @@
         socket.emit("testCPseudo", {pseudo: document.getElementById("CPseudo").value});
     };
 
+    document.getElementById("JRoomName").onkeyup = function() {
+        socket.emit("testJRoomName", {room: document.getElementById("JRoomName").value});
+    };
+    document.getElementById("JPseudo").onkeyup = function() {
+        socket.emit("testJPseudo", {pseudo: document.getElementById("JPseudo").value});
+    };
+
     $('#Create').click(function(){
         var room = document.getElementById("CRoomName").value;
         var pseudo = document.getElementById("CPseudo").value;
