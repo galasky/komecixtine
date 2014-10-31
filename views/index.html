@@ -73,6 +73,7 @@
   <script type="text/javascript">
       var socket = io.connect('http://galasky.fr');
       socket.emit("testRoomName", {room: document.getElementById("CRoomName").value});
+      socket.emit("testPseudo", {pseudo: document.getElementById("CPseudo").value});
 
     $('#BtnCreate').click(function(){
     $("#MdlCreate").modal('show');
@@ -84,6 +85,9 @@
 
     document.getElementById("CRoomName").onkeyup = function() {
         socket.emit("testRoomName", {room: document.getElementById("CRoomName").value});
+    };
+    document.getElementById("CPseudo").onkeyup = function() {
+        socket.emit("testPseudo", {pseudo: document.getElementById("CPseudo").value});
     };
 
     $('#Create').click(function(){
@@ -107,6 +111,16 @@
             document.getElementById("FCRoomName").setAttribute("class", "form-group has-error");
             document.getElementById("Create").setAttribute("class", "btn btn-primary disabled");
         }
+      });
+
+      socket.on("rspTestPseudo", function(data) {
+          if (data.rsp) {
+              document.getElementById("FCPseudo").setAttribute("class", "form-group has-success");
+              document.getElementById("Create").setAttribute("class", "btn btn-primary");
+          } else {
+              document.getElementById("FCPseudo").setAttribute("class", "form-group has-error");
+              document.getElementById("Create").setAttribute("class", "btn btn-primary disabled");
+          }
       });
   </script>
 

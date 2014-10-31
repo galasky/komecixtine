@@ -66,6 +66,14 @@ io.on('connection', function (socket) {
         }
     });
 
+    socket.on("testPseudo", function(data){
+        if (data.pseudo == "") {
+            socket.emit("rspTestRoomName", {rsp: false});
+        } else {
+            socket.emit("rspTestRoomName", {rsp: true});
+        }
+    });
+
     socket.on("hello", function(data) {
         console.log("hello!");
     });
