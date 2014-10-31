@@ -71,7 +71,7 @@
   <script src='/socket.io/socket.io.js'></script>
 
   <script type="text/javascript">
-      document.getElementById("Create")[0].disable = true;
+      document.getElementById("Create").disable = true;
 
       var socket = io.connect('http://galasky.fr');
       socket.emit('hello', { room: "#{room}" });
@@ -104,10 +104,10 @@
       socket.on("rspTestRoomName", function(data) {
         if (data.rsp) {
             document.getElementById("FCRoomName").setAttribute("class", "form-group has-success");
-            document.getElementById("Create")[0].disable = false;
+            document.getElementById("Create").disable = false;
         } else {
             document.getElementById("FCRoomName").setAttribute("class", "form-group has-error");
-            document.getElementById("Create")[0].disable = true;
+            document.getElementById("Create").disable = true;
         }
       });
   </script>
