@@ -194,7 +194,7 @@
       });
 
       socket.on("newPlayer", function(player) {
-          document.getElementById("ListPlayer").textContent += "<p>" + player.pseudo + "</p>"
+          document.getElementById("ListPlayer").textContent += player.pseudo;
       });
 
       socket.on("listPlayer", function(listPlayer) {
