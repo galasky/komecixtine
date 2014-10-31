@@ -134,7 +134,10 @@ io.on('connection', function (socket) {
 //        console.log("join de la room " + data.room);
         if (data.room in listRoom) {
             var room = listRoom[data.room];
-            var list = ["lol", "caca"];
+            var list = [];
+            for (var i = 0; i < room.listPlayer.length; i++) {
+                list[i] = room.listPlayer[i].pseudo;
+            }
             socket.emit("listPlayer", {listPlayer: list});
             room.addPlayer(new Player(data.pseudo, socket));
         }
