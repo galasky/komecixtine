@@ -127,6 +127,7 @@
         var room = document.getElementById("CRoomName").value;
         var pseudo = document.getElementById("CPseudo").value;
         socket.emit("create", {room: room, pseudo: pseudo});
+        document.getElementById("ListPlayer").textContent = "";
         $("#MdlCreate").modal('hide');
         $("#WaitingModal").modal('show');
     });
@@ -135,6 +136,7 @@
         var room = document.getElementById("JRoomName").value;
         var pseudo = document.getElementById("JPseudo").value;
         socket.emit("join", {room: room, pseudo: pseudo});
+        document.getElementById("ListPlayer").textContent = "";
         $("#MdlJoin").modal('hide');
         $("#WaitingModal").modal('show');
     });
