@@ -18,8 +18,7 @@ function Player(pseudo, sock) {
 }
 Player.prototype.emmitNewPlayer = function(player) {
     if (this != player) {
-        console.log("emmit new Player");
-        this.socket.emit("newPlayer", {newPlayer: "test"});
+        this.socket.emit("newPlayer", {pseudo: player.pseudo});
     }
 };
 
@@ -31,7 +30,6 @@ function Room(roomName,maxPlayer) {
 
 }
 Room.prototype.addPlayer = function(player) {
-    console.log("AddPlayer");
     this.listPlayer[this.listPlayer.length] = player;
     for (var i= 0; i < this.listPlayer.length; i++) {
         this.listPlayer[i].emmitNewPlayer(player);
