@@ -68,9 +68,9 @@ io.on('connection', function (socket) {
 
     socket.on("testPseudo", function(data){
         if (data.pseudo == "") {
-            socket.emit("rspTestRoomName", {rsp: false});
+            socket.emit("rspTestPseudo", {rsp: false});
         } else {
-            socket.emit("rspTestRoomName", {rsp: true});
+            socket.emit("rspTestPseudo", {rsp: true});
         }
     });
 
