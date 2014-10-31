@@ -200,7 +200,7 @@
 
       socket.on("listPlayer", function(listPlayer) {
           for (var i = 0; i < listPlayer.listPlayer.length; i++) {
-              document.getElementById("ListPlayer").textContent += listPlayer.listPlayer[i].pseudo + " ";
+              document.getElementById("ListPlayer").textContent += listPlayer.listPlayer[i] + " ";
           }
       });
   </script>
