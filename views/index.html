@@ -84,7 +84,7 @@
     $("#MdlJoin").modal('show');
     });
 
-    $("#CRoomName").onkeyup = function() {
+    document.getElementById("CRoomName").onkeyup = function() {
         socket.emit("testRoomName", {room: document.getElementById("CRoomName").value});
     };
 
