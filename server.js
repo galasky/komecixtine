@@ -20,7 +20,7 @@ function Room(roomName,maxPlayer) {
 var listRoom = {};
 
 app.get('/komecixtine', function (req, res) {
-  res.sendfile(__dirname + '/views/index.html');
+  res.render(__dirname + '/views/index.html');
 });
 
 app.get('/komecixtine/create', function (req, res) {
@@ -54,7 +54,15 @@ app.get('/profil', function (req, res) {
 
 io.on('connection', function (socket) {
     console.log("connection");
-    socket.emit('news', { hello: 'world' });
+
+    socket.on("testRoomName", function(data){
+        var rsp = !(room in listRoom);
+        socket.emit("rspTestRoomName", {rsp: rsp});
+    });
+
+    socket.on("hello", function(data) {
+
+    });
 
     socket.on('create', function (data) {
 //        console.log("creation de la room " + data.room);

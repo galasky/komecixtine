@@ -5,10 +5,7 @@ html(lang="en")
         script(src='/socket.io/socket.io.js')
         script(type='text/javascript').
             var socket = io.connect('http://galasky.fr');
-            socket.on('news', function (data) {
-                console.log(data);
-                socket.emit('create', { room: "#{room}" });
-                });
+            socket.emit('create', { room: "#{room}" });
     body
         h1= room
         p.

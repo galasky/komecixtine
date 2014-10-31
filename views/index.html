@@ -28,9 +28,15 @@
           <div class="modal-body">
             <p>Choose your pseudo, the number of players and the room name</p>
             <p class="text-warning"><small>waring</small></p>
-	    <input type="email" class="form-control" id="CPseudo" placeholder="Pseudo">
-	    <input type="email" class="form-control" id="CNbPlayer" placeholder="Number of players">
-	    <input type="email" class="form-control" id="CRoomName" placeholder="Room name">
+        <div id="FCPseudo" class="form-group">
+	        <input type="email" class="form-control" id="CPseudo" placeholder="Pseudo">
+	    </div>
+        <div id="FCNbPlayer" class="form-group">
+            <input type="email" class="form-control" id="CNbPlayer" placeholder="Number of players">
+        </div>
+        <div id="FCRoomName" class="form-group">
+              <input type="email" class="form-control" id="CRoomName" placeholder="Room name">
+        </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -62,7 +68,13 @@
     </div>    
   </body>
 
+  <script src='/socket.io/socket.io.js'></script>
+
   <script type="text/javascript">
+      document.getElementById("Create")[0].disable = true;
+
+      var socket = io.connect('http://galasky.fr');
+      socket.emit('hello', { room: "#{room}" });
 
     $('#BtnCreate').click(function(){
     $("#MdlCreate").modal('show');
@@ -70,6 +82,10 @@
 
     $('#BtnJoin').click(function(){
     $("#MdlJoin").modal('show');
+    });
+
+    $("#CRoomName").onkeyup(function() {
+        socket.emit("testRoomName", {room: document.getElementById("CRoomName").value})
     });
 
     $('#Create').click(function(){
@@ -84,6 +100,16 @@
         document.location.href = "http://galasky.fr/komecixtine/join?" + "room=" + room + "&pseudo=" + pseudo;
     });
 
+
+      socket.on("rspTestRoomName", function(data) {
+        if (data.rsp) {
+            document.getElementById("FCRoomName").setAttribute("class", "form-group has-success");
+            document.getElementById("Create")[0].disable = false;
+        } else {
+            document.getElementById("FCRoomName").setAttribute("class", "form-group has-error");
+            document.getElementById("Create")[0].disable = true;
+        }
+      });
   </script>
 
 </html>
