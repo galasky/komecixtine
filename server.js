@@ -15,27 +15,27 @@ server.listen(80, function() {
 function Player(pseudo, sock) {
     this.pseudo = pseudo;
     this.socket = sock;
-    this.emitNewPlayer = function(player) {
-        if (this != player) {
-            this.socket.emit("newPlayer", player);
-        }
-    };
 }
+Player.prototype.emmitNewPlayer = function(player) {
+    if (this != player) {
+        this.socket.emit("newPlayer", player);
+    }
+};
+
 
 function Room(roomName,maxPlayer) {
     this.roomName=roomName;
     this.maxPlayer=maxPlayer;
-    this.nbPlayer = 0;
-    this.listPlayer = new Map();
+    this.listPlayer = [];
 
-    this.addPlayer = function(player) {
-        this.listPlayer.set(this.nbPlayer, player);
-        this.nbPlayer += 1;
-        for (var value in this.listPlayer.values()) {
-            value.emitNewPlayer(player);
-        }
-    };
 }
+Room.prototype.addPlayer = function(player) {
+    this.listPlayer.push(player);
+    for (var i= 0; i < this.listPlayer.length; i++) {
+        this.listPlayer[i].emmitNewPlayer(player);
+    }
+};
+
 
 var listRoom = {};
 
