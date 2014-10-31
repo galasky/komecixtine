@@ -19,7 +19,7 @@ function Player(pseudo, sock) {
 Player.prototype.emmitNewPlayer = function(player) {
     if (this != player) {
         console.log("emmit new Player");
-        this.socket.emit("newPlayer", player);
+        this.socket.emit("newPlayer", {newPlayer: "test"});
     }
 };
 
