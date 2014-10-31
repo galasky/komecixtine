@@ -12,15 +12,16 @@ server.listen(80, function() {
     console.log("the server is started");
 });
 
+function emitNewPlayer(player) {
+    if (this != player) {
+        socket.emit("newPlayer", player);
+    }
+};
+
 function Player(pseudo, socket) {
     this.pseudo = pseudo;
     this.socket = socket;
-
-    this.emitNewPlayer = function(player) {
-        if (this != player) {
-            socket.emit("newPlayer", player);
-        }
-    };
+    this.emitNewPlayer = emitNewPlayer;
 }
 
 
