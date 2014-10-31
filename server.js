@@ -18,6 +18,7 @@ function Player(pseudo, sock) {
 }
 Player.prototype.emmitNewPlayer = function(player) {
     if (this != player) {
+        conole.log("emmit new Player");
         this.socket.emit("newPlayer", player);
     }
 };
@@ -30,6 +31,7 @@ function Room(roomName,maxPlayer) {
 
 }
 Room.prototype.addPlayer = function(player) {
+    conole.log("AddPlayer");
     this.listPlayer[this.listPlayer.length] = player;
     for (var i= 0; i < this.listPlayer.length; i++) {
         this.listPlayer[i].emmitNewPlayer(player);
