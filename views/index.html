@@ -80,7 +80,6 @@
                   <h4 class="modal-title">Waiting players</h4>
               </div>
               <div id="ListPlayer" class="modal-body">
-                  <p>...</p>
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -194,11 +193,11 @@
       });
 
       socket.on("newPlayer", function(player) {
-          document.getElementById("ListPlayer").textContent += player.pseudo;
+          document.getElementById("ListPlayer").textContent += player.pseudo + " ";
       });
 
       socket.on("listPlayer", function(listPlayer) {
-          document.getElementById("ListPlayer").textContent += listPlayer;
+          document.getElementById("ListPlayer").textContent += listPlayer.listPlayer;
       });
   </script>
 

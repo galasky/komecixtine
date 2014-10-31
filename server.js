@@ -134,7 +134,7 @@ io.on('connection', function (socket) {
 //        console.log("join de la room " + data.room);
         if (data.room in listRoom) {
             var room = listRoom[data.room];
-            socket.emit("listPlayer", {data: "list"});
+            socket.emit("listPlayer", {listPlayer: room.listPlayer});
             room.addPlayer(new Player(data.pseudo, socket));
         }
     });
