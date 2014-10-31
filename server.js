@@ -12,18 +12,15 @@ server.listen(80, function() {
     console.log("the server is started");
 });
 
-function emitNewPlayer(player) {
-    if (this != player) {
-        socket.emit("newPlayer", player);
-    }
-};
-
-function Player(pseudo, socket) {
+function Player(pseudo, sock) {
     this.pseudo = pseudo;
-    this.socket = socket;
-    this.emitNewPlayer = emitNewPlayer;
+    this.socket = sock;
+    this.emitNewPlayer = function(player) {
+        if (this != player) {
+            this.socket.emit("newPlayer", player);
+        }
+    };
 }
-
 
 function Room(roomName,maxPlayer) {
     this.roomName=roomName;
