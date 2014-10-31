@@ -72,7 +72,7 @@
 
   <script type="text/javascript">
       var socket = io.connect('http://galasky.fr');
-      socket.emit('hello', { room: "#{room}" });
+      socket.emit("testRoomName", {room: document.getElementById("CRoomName").value});
 
     $('#BtnCreate').click(function(){
     $("#MdlCreate").modal('show');
