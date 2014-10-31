@@ -56,8 +56,12 @@
           <div class="modal-body">
             <p>Choose your pseudo and the room name</p>
             <p class="text-warning"><small>warning</small></p>
-	    <input type="email" class="form-control" id="JPseudo" placeholder="Pseudo">
-	    <input type="email" class="form-control" id="JRoomName" placeholder="Room name">
+              <div id="FJPseudo" class="form-group">
+                  <input type="email" class="form-control" id="JPseudo" placeholder="Pseudo">
+              </div>
+              <div id="FJRoomName" class="form-group">
+                  <input type="email" class="form-control" id="JRoomName" placeholder="Room name">
+              </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -73,10 +77,13 @@
   <script type="text/javascript">
       var CPseudo = false;
       var CRoomName = false;
+      var JPseudo = false;
+      var JRoomName = false;
       var socket = io.connect('http://galasky.fr');
-      socket.emit("testRoomName", {room: document.getElementById("CRoomName").value});
-      socket.emit("testPseudo", {pseudo: document.getElementById("CPseudo").value});
-
+      socket.emit("testCRoomName", {room: document.getElementById("CRoomName").value});
+      socket.emit("testCPseudo", {pseudo: document.getElementById("CPseudo").value});
+      socket.emit("testJRoomName", {room: document.getElementById("JRoomName").value});
+      socket.emit("testJPseudo", {pseudo: document.getElementById("JPseudo").value});
     $('#BtnCreate').click(function(){
     $("#MdlCreate").modal('show');
     });
@@ -86,10 +93,10 @@
     });
 
     document.getElementById("CRoomName").onkeyup = function() {
-        socket.emit("testRoomName", {room: document.getElementById("CRoomName").value});
+        socket.emit("testCRoomName", {room: document.getElementById("CRoomName").value});
     };
     document.getElementById("CPseudo").onkeyup = function() {
-        socket.emit("testPseudo", {pseudo: document.getElementById("CPseudo").value});
+        socket.emit("testCPseudo", {pseudo: document.getElementById("CPseudo").value});
     };
 
     $('#Create').click(function(){
@@ -105,7 +112,7 @@
     });
 
 
-      socket.on("rspTestRoomName", function(data) {
+      socket.on("rspTestCRoomName", function(data) {
         CRoomName = data.rsp;
         if (CRoomName) {
             document.getElementById("FCRoomName").setAttribute("class", "form-group has-success");
@@ -118,7 +125,7 @@
         }
       });
 
-      socket.on("rspTestPseudo", function(data) {
+      socket.on("rspTestCPseudo", function(data) {
           CPseudo = data.rsp;
           if (CPseudo) {
               document.getElementById("FCPseudo").setAttribute("class", "form-group has-success");
@@ -128,6 +135,32 @@
           } else {
               document.getElementById("FCPseudo").setAttribute("class", "form-group has-error");
               document.getElementById("Create").setAttribute("class", "btn btn-primary disabled");
+          }
+      });
+
+      socket.on("rspTestJRoomName", function(data) {
+          JRoomName = data.rsp;
+          if (JRoomName) {
+              document.getElementById("FJRoomName").setAttribute("class", "form-group has-success");
+              if (JRoomName && JPseudo) {
+                  document.getElementById("Join").setAttribute("class", "btn btn-primary");
+              }
+          } else {
+              document.getElementById("FJRoomName").setAttribute("class", "form-group has-error");
+              document.getElementById("Join").setAttribute("class", "btn btn-primary disabled");
+          }
+      });
+
+      socket.on("rspTestJPseudo", function(data) {
+          JPseudo = data.rsp;
+          if (JPseudo) {
+              document.getElementById("FJPseudo").setAttribute("class", "form-group has-success");
+              if (JRoomName && JPseudo) {
+                  document.getElementById("Join").setAttribute("class", "btn btn-primary");
+              }
+          } else {
+              document.getElementById("FJPseudo").setAttribute("class", "form-group has-error");
+              document.getElementById("Join").setAttribute("class", "btn btn-primary disabled");
           }
       });
   </script>
