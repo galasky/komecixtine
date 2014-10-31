@@ -84,9 +84,9 @@
     $("#MdlJoin").modal('show');
     });
 
-    $("#CRoomName").onkeyup(function() {
-        socket.emit("testRoomName", {room: document.getElementById("CRoomName").value})
-    });
+    $("#CRoomName").onkeyup = function() {
+        socket.emit("testRoomName", {room: document.getElementById("CRoomName").value});
+    };
 
     $('#Create').click(function(){
         var room = document.getElementById("CRoomName").value;
