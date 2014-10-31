@@ -72,13 +72,23 @@
     </div>    
   </body>
 
-  <div id="WaitingModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-sm">
+  <div id="WaitingModal" class="modal fade">
+      <div class="modal-dialog">
           <div class="modal-content">
-              ...
-          </div>
-      </div>
-  </div>
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                  <h4 class="modal-title">Waiting players</h4>
+              </div>
+              <div class="modal-body">
+                  <p>...</p>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <!--<button type="button" class="btn btn-primary"></button>-->
+              </div>
+          </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 
   <script src='/socket.io/socket.io.js'></script>
 
