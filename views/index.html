@@ -79,7 +79,7 @@
                   <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                   <h4 class="modal-title">Waiting players</h4>
               </div>
-              <div class="modal-body">
+              <div id="ListPlayer" class="modal-body">
                   <p>...</p>
               </div>
               <div class="modal-footer">
@@ -191,6 +191,14 @@
               document.getElementById("FJPseudo").setAttribute("class", "form-group has-error");
               document.getElementById("Join").setAttribute("class", "btn btn-primary disabled");
           }
+      });
+
+      socket.on("newPlayer", function(player) {
+          document.getElementById("ListPlayer").textContent += "<p>" + player.pseudo + "</p>"
+      });
+
+      socket.on("listPlayer", function(listPlayer) {
+          document.getElementById("ListPlayer").textContent += listPlayer;
       });
   </script>
 

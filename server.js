@@ -12,9 +12,32 @@ server.listen(80, function() {
     console.log("the server is started");
 });
 
+function Player(pseudo, socket) {
+    this.pseudo = pseudo;
+    this.socket = socket;
+
+    this.emitNewPlayer = function(player) {
+        if (this != player) {
+            socket.emit("newPlayer", player);
+        }
+    };
+}
+
+
 function Room(roomName,maxPlayer) {
     this.roomName=roomName;
     this.maxPlayer=maxPlayer;
+    this.nbPlayer = 0;
+    this.listPlayer={};
+
+    this.addPlayer = function(player) {
+        this.listPlayer[this.nbPlayer] = player;
+        this.nbPlayer += 1;
+        var i;
+        for (i = 0; i < maxPlayer; i++) {
+            this.listPlayer[i].emitNewPlayer(player);
+        }
+    };
 }
 
 var listRoom = {};
@@ -104,13 +127,19 @@ io.on('connection', function (socket) {
             console.log("error : room already exist");
         } else {
             console.log("create room : " + data.room);
-            listRoom[data.room] = new Room(data.room, 4);
+            var room = new Room(data.room, 4);
+            room.addPlayer(new Player(data.pseudo, socket));
+            listRoom[data.room] = room;
         }
     });
 
     socket.on('join', function (data) {
 //        console.log("join de la room " + data.room);
-
+        if (data.room in listRoom) {
+            var room = listRoom[data.room];
+            socket.emit("listPlayer", room.listPlayer);
+            room.addPlayer(new Player(data.pseudo, socket));
+        }
     });
 
     socket.on('disconnect', function () {
