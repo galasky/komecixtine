@@ -20,7 +20,7 @@ function Room(roomName,maxPlayer) {
 var listRoom = {};
 
 app.get('/komecixtine', function (req, res) {
-  res.render(__dirname + '/views/index.html');
+  res.sendFile(__dirname + '/views/index.html');
 });
 
 app.get('/komecixtine/create', function (req, res) {
