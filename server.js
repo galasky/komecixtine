@@ -32,7 +32,8 @@ function Room(roomName,maxPlayer) {
 Room.prototype.addPlayer = function(player) {
     this.listPlayer.push(player);
     for (var i= 0; i < this.listPlayer.length; i++) {
-        this.listPlayer[i].emmitNewPlayer(player);
+        this.listPlayer.get(i).emmitNewPlayer(player);
+//        this.listPlayer[i].emmitNewPlayer(player);
     }
 };
 
@@ -135,7 +136,7 @@ io.on('connection', function (socket) {
         if (data.room in listRoom) {
             var room = listRoom[data.room];
             socket.emit("listPlayer", {data: "list"});
-            //room.addPlayer(new Player(data.pseudo, socket));
+            room.addPlayer(new Player(data.pseudo, socket));
         }
     });
 
