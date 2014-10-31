@@ -100,10 +100,17 @@ io.on('connection', function (socket) {
 
     socket.on('create', function (data) {
 //        console.log("creation de la room " + data.room);
+        if (data.room in listRoom) {
+            console.log("error : room already exist");
+        } else {
+            console.log("create room : " + data.room);
+            listRoom[data.room] = new Room(data.room, 4);
+        }
     });
 
     socket.on('join', function (data) {
 //        console.log("join de la room " + data.room);
+
     });
 
     socket.on('disconnect', function () {

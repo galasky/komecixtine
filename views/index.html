@@ -72,6 +72,14 @@
     </div>    
   </body>
 
+  <div id="WaitingModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+              ...
+          </div>
+      </div>
+  </div>
+
   <script src='/socket.io/socket.io.js'></script>
 
   <script type="text/javascript">
@@ -109,13 +117,14 @@
     $('#Create').click(function(){
         var room = document.getElementById("CRoomName").value;
         var pseudo = document.getElementById("CPseudo").value;
-        document.location.href = "http://galasky.fr/komecixtine/create?" + "room=" + room + "&pseudo=" + pseudo;
+        socket.emit("create", {room: room, pseudo: pseudo});
+        $("#WaitingModal").modal('show');
     });
 
     $('#Join').click(function(){
         var room = document.getElementById("JRoomName").value;
         var pseudo = document.getElementById("JPseudo").value;
-        document.location.href = "http://galasky.fr/komecixtine/join?" + "room=" + room + "&pseudo=" + pseudo;
+        socket.emit("join", {room: room, pseudo: pseudo});
     });
 
 
