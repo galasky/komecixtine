@@ -57,6 +57,7 @@ io.on('connection', function (socket) {
 
     socket.on("testRoomName", function(data){
         if (data.room == "") {
+            console.log("VIDE");
             socket.emit("rspTestRoomName", {rsp: false});
         } else {
             var rsp = !(data.room in listRoom);
