@@ -30,10 +30,9 @@ function Room(roomName,maxPlayer) {
 
 }
 Room.prototype.addPlayer = function(player) {
-    this.listPlayer.push(player);
+    this.listPlayer[this.listPlayer.length] = player;
     for (var i= 0; i < this.listPlayer.length; i++) {
-        this.listPlayer.get(i).emmitNewPlayer(player);
-//        this.listPlayer[i].emmitNewPlayer(player);
+        this.listPlayer[i].emmitNewPlayer(player);
     }
 };
 
