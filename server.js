@@ -26,10 +26,10 @@ function Room(roomName,maxPlayer) {
     this.roomName=roomName;
     this.maxPlayer=maxPlayer;
     this.nbPlayer = 0;
-    this.listPlayer={};
+    this.listPlayer = new Map();
 
     this.addPlayer = function(player) {
-        this.listPlayer[this.nbPlayer] = player;
+        this.listPlayer.set(this.nbPlayer, player);
         this.nbPlayer += 1;
         for (var value in this.listPlayer.values()) {
             value.emitNewPlayer(player);
