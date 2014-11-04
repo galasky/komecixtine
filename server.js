@@ -17,6 +17,7 @@ function Player(pseudo, sock) {
     this.socket = sock;
     this.number = -1;
     this.room = null;
+    this.hands = [];
 }
 Player.prototype.emitNewPlayer = function(player) {
     if (this != player) {
@@ -35,13 +36,47 @@ Player.prototype.emitRefreshListPlayer = function() {
 Player.prototype.emitStart = function() {
         this.socket.emit("start");
 };
+Player.prototype.takeCards = function(number) {
+    console.log("takeCards " + this.pseudo);
+    this.hands = room.stack.pop(number);
+};
 
+function Card(value, color) {
+    this.value = value;
+    this.color = color;
+}
+
+function Stack() {
+    this.cards = [];
+    for (var i = 0; i < 13; i++) {
+        this.cards.push(new Card(i + 1, "pic"));
+    }
+    for (var i = 0; i < 13; i++) {
+        this.cards.push(new Card(i + 1, "coeur"));
+    }
+    for (var i = 0; i < 13; i++) {
+        this.cards.push(new Card(i + 1, "caro"));
+    }
+    for (var i = 0; i < 13; i++) {
+        this.cards.push(new Card(i + 1, "trefle"));
+    }
+}
+Stack.prototype.pop = function (number) {
+    var cards = [];
+    for (var i = 0; i < number; i++) {
+        var card = this.cards.pop();
+        console.log("pop " + card.value + " " + card.color);
+        cards.push(card);
+    }
+    return cards;
+};
 
 function Room(roomName,maxPlayer) {
     this.roomName=roomName;
     this.maxPlayer=maxPlayer;
     this.listPlayer = [];
-
+    this.started = false;
+    this.stack = null;
 }
 Room.prototype.addPlayer = function(player) {
     player.number = this.listPlayer.length;
@@ -65,7 +100,10 @@ Room.prototype.deletePlayer = function(player) {
     }
 };
 Room.prototype.start = function() {
+    this.started = true;
+    this.stack = new Stack();
     for (var i= 0; i < this.listPlayer.length; i++) {
+        this.listPlayer[i].takeCards(4);
         this.listPlayer[i].emitStart();
     }
 };
@@ -132,8 +170,7 @@ io.on('connection', function (socket) {
         if (data.room == "") {
             socket.emit("rspTestJRoomName", {rsp: false});
         } else {
-            var rsp = (data.room in listRoom && listRoom[data.room].listPlayer.length < 4);
-            console.log("rsp " + rsp);
+            var rsp = (data.room in listRoom && listRoom[data.room].listPlayer.length < 4 && listRoom[data.room].started == false);
             socket.emit("rspTestJRoomName", {rsp: rsp});
         }
     });
