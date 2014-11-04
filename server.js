@@ -124,7 +124,7 @@ io.on('connection', function (socket) {
         if (data.room == "") {
             socket.emit("rspTestJRoomName", {rsp: false});
         } else {
-            var rsp = (data.room in listRoom && list[data.room].listPlayer.length < 4);
+            var rsp = (data.room in listRoom && listRoom[data.room].listPlayer.length < 4);
             console.log("rsp " + rsp);
             socket.emit("rspTestJRoomName", {rsp: rsp});
         }
