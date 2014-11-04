@@ -20,7 +20,7 @@ Player.prototype.emitRefreshListPlayer = function() {
     this.socket.emit("refreshListPlayer", {listPlayer: list});
 };
 Player.prototype.emitStart = function() {
-    this.socket.emit("start", {hands: this.hands});
+    this.socket.emit("start");
 };
 Player.prototype.takeCards = function(number) {
     this.hands = this.room.stack.pop(number);
