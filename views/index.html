@@ -77,12 +77,12 @@
           <div class="modal-content">
               <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                  <h4 class="modal-title">Waiting players</h4>
+                  <h4 id="TitleWaiting" class="modal-title"></h4>
               </div>
               <div id="ListPlayer" class="modal-body">
               </div>
               <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button id="WClose" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                   <!--<button type="button" class="btn btn-primary"></button>-->
               </div>
           </div><!-- /.modal-content -->
@@ -109,6 +109,12 @@
     $("#MdlJoin").modal('show');
     });
 
+    $('#WClose').click(function(){
+        socket.emit("quit");
+    });
+
+
+
     document.getElementById("CRoomName").onkeyup = function() {
         socket.emit("testCRoomName", {room: document.getElementById("CRoomName").value});
     };
@@ -128,15 +134,21 @@
         var pseudo = document.getElementById("CPseudo").value;
         socket.emit("create", {room: room, pseudo: pseudo});
         document.getElementById("ListPlayer").textContent = "";
+        document.getElementById("TitleWaiting").textContent = "Room " + room + " Waiting for players";
         $("#MdlCreate").modal('hide');
         $("#WaitingModal").modal('show');
     });
+
+      $('#WaitingModal').on('hidden.bs.modal', function (e) {
+          // do something...
+      })
 
     $('#Join').click(function(){
         var room = document.getElementById("JRoomName").value;
         var pseudo = document.getElementById("JPseudo").value;
         socket.emit("join", {room: room, pseudo: pseudo});
         document.getElementById("ListPlayer").textContent = "";
+        document.getElementById("TitleWaiting").textContent = "Room " + room + " Waiting for players";
         $("#MdlJoin").modal('hide');
         $("#WaitingModal").modal('show');
     });
@@ -199,6 +211,13 @@
       });
 
       socket.on("listPlayer", function(listPlayer) {
+          for (var i = 0; i < listPlayer.listPlayer.length; i++) {
+              document.getElementById("ListPlayer").textContent += listPlayer.listPlayer[i] + " ";
+          }
+      });
+
+      socket.on("refreshListPlayer", function(listPlayer) {
+          document.getElementById("ListPlayer").textContent = "";
           for (var i = 0; i < listPlayer.listPlayer.length; i++) {
               document.getElementById("ListPlayer").textContent += listPlayer.listPlayer[i] + " ";
           }

@@ -15,11 +15,16 @@ server.listen(80, function() {
 function Player(pseudo, sock) {
     this.pseudo = pseudo;
     this.socket = sock;
+    this.number = -1;
+    this.room;
 }
 Player.prototype.emmitNewPlayer = function(player) {
     if (this != player) {
         this.socket.emit("newPlayer", {pseudo: player.pseudo});
     }
+};
+Player.prototype.emmitRefreshListPlayer = function(listPlayer) {
+    this.socket.emit("refreshListPlayer", {listPlayer: listPlayer});
 };
 
 
@@ -30,12 +35,26 @@ function Room(roomName,maxPlayer) {
 
 }
 Room.prototype.addPlayer = function(player) {
-    this.listPlayer[this.listPlayer.length] = player;
+    player.number = this.listPlayer.length;
+    this.listPlayer[player.number] = player;
     for (var i= 0; i < this.listPlayer.length; i++) {
         this.listPlayer[i].emmitNewPlayer(player);
     }
 };
-
+Room.prototype.deletePlayer = function(player) {
+    var listTmp = [];
+    for (var i= 0; i < this.listPlayer.length; i++) {
+        if (i != player.number) {
+            var p = this.listPlayer[i];
+            p.number = listTmp.length;
+            listTmp[p.number] = p;
+        }
+    }
+    this.listPlayer = listTmp;
+    for (var i= 0; i < this.listPlayer.length; i++) {
+        this.listPlayer[i].emmitRefreshListPlayer(this.listPlayer);
+    }
+};
 
 var listRoom = {};
 
@@ -74,6 +93,7 @@ app.get('/profil', function (req, res) {
 
 io.on('connection', function (socket) {
     console.log("connection");
+    var player = new Player("unknow", socket);
 
     socket.on("testCRoomName", function(data){
         if (data.room == "") {
@@ -125,7 +145,9 @@ io.on('connection', function (socket) {
         } else {
             console.log("create room : " + data.room);
             var room = new Room(data.room, 4);
-            room.addPlayer(new Player(data.pseudo, socket));
+            player.pseudo = data.pseudo;
+            player.room = room;
+            room.addPlayer(player);
             listRoom[data.room] = room;
         }
     });
@@ -139,11 +161,18 @@ io.on('connection', function (socket) {
                 list[i] = room.listPlayer[i].pseudo;
             }
             socket.emit("listPlayer", {listPlayer: list});
-            room.addPlayer(new Player(data.pseudo, socket));
+            player.room = room;
+            player.pseudo = data.pseudo;
+            room.addPlayer(player);
         }
     });
 
+    socket.on('quit', function (data) {
+        player.room.deletePlayer(player);
+    });
+
     socket.on('disconnect', function () {
+        player.room.deletePlayer(player);
         console.log("disconnected");
     });
 });
