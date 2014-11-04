@@ -5,6 +5,8 @@ module.exports = function Player(pseudo, sock) {
     this.room = null;
     this.hands = [];
 }
+var Player = require('./Player.js');
+
 Player.prototype.emitNewPlayer = function(player) {
     if (this != player) {
         this.socket.emit("newPlayer", {pseudo: player.pseudo});
