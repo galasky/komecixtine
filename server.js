@@ -2,113 +2,16 @@ var express = require('express');
 var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
+var Player = require('./Player.js');
+var Room = require('./Room.js');
+var listRoom = {};
 
 app.use("/static", express.static(__dirname + '/static'));
 app.set('view engine', 'jade');
 
-
-
 server.listen(80, function() {
     console.log("the server is started");
 });
-
-function Player(pseudo, sock) {
-    this.pseudo = pseudo;
-    this.socket = sock;
-    this.number = -1;
-    this.room = null;
-    this.hands = [];
-}
-Player.prototype.emitNewPlayer = function(player) {
-    if (this != player) {
-        this.socket.emit("newPlayer", {pseudo: player.pseudo});
-    }
-};
-Player.prototype.emitRefreshListPlayer = function() {
-    var list = [];
-    for (var i = 0; i < this.room.listPlayer.length; i++) {
-        if (i != this.number) {
-            list[i] = this.room.listPlayer[i].pseudo;
-        }
-    }
-    this.socket.emit("refreshListPlayer", {listPlayer: list});
-};
-Player.prototype.emitStart = function() {
-        this.socket.emit("start");
-};
-Player.prototype.takeCards = function(number) {
-    console.log("takeCards " + this.pseudo);
-    this.hands = this.room.stack.pop(number);
-};
-
-function Card(value, color) {
-    this.value = value;
-    this.color = color;
-}
-
-function Stack() {
-    this.cards = [];
-    for (var i = 0; i < 13; i++) {
-        this.cards.push(new Card(i + 1, "pic"));
-    }
-    for (var i = 0; i < 13; i++) {
-        this.cards.push(new Card(i + 1, "coeur"));
-    }
-    for (var i = 0; i < 13; i++) {
-        this.cards.push(new Card(i + 1, "caro"));
-    }
-    for (var i = 0; i < 13; i++) {
-        this.cards.push(new Card(i + 1, "trefle"));
-    }
-}
-Stack.prototype.pop = function (number) {
-    var cards = [];
-    for (var i = 0; i < number; i++) {
-        var card = this.cards.pop();
-        console.log("pop " + card.value + " " + card.color);
-        cards.push(card);
-    }
-    return cards;
-};
-
-function Room(roomName,maxPlayer) {
-    this.roomName=roomName;
-    this.maxPlayer=maxPlayer;
-    this.listPlayer = [];
-    this.started = false;
-    this.stack = null;
-}
-Room.prototype.addPlayer = function(player) {
-    player.number = this.listPlayer.length;
-    this.listPlayer[player.number] = player;
-    for (var i= 0; i < this.listPlayer.length; i++) {
-        this.listPlayer[i].emitNewPlayer(player);
-    }
-};
-Room.prototype.deletePlayer = function(player) {
-    var listTmp = [];
-    for (var i= 0; i < this.listPlayer.length; i++) {
-        if (i != player.number) {
-            var p = this.listPlayer[i];
-            p.number = listTmp.length;
-            listTmp[p.number] = p;
-        }
-    }
-    this.listPlayer = listTmp;
-    for (var i= 0; i < this.listPlayer.length; i++) {
-        this.listPlayer[i].emitRefreshListPlayer();
-    }
-};
-Room.prototype.start = function() {
-    this.started = true;
-    this.stack = new Stack();
-    for (var i= 0; i < this.listPlayer.length; i++) {
-        this.listPlayer[i].takeCards(4);
-        this.listPlayer[i].emitStart();
-    }
-};
-
-var listRoom = {};
 
 app.get('/komecixtine', function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
@@ -140,8 +43,6 @@ app.get('/komecixtine/join', function (req, res) {
 app.get('/profil', function (req, res) {
   res.render(__dirname + '/views/profil.html');
 });
-
-
 
 io.on('connection', function (socket) {
     console.log("connection");
@@ -183,13 +84,11 @@ io.on('connection', function (socket) {
         }
     });
 
-
     socket.on("hello", function(data) {
         console.log("hello!");
     });
 
     socket.on('create', function (data) {
-//        console.log("creation de la room " + data.room);
         if (data.room in listRoom) {
             console.log("error : room already exist");
         } else {
@@ -203,7 +102,6 @@ io.on('connection', function (socket) {
     });
 
     socket.on('join', function (data) {
-//        console.log("join de la room " + data.room);
         if (data.room in listRoom) {
             var room = listRoom[data.room];
             var list = [];
