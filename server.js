@@ -18,12 +18,12 @@ function Player(pseudo, sock) {
     this.number = -1;
     this.room = null;
 }
-Player.prototype.emmitNewPlayer = function(player) {
+Player.prototype.emitNewPlayer = function(player) {
     if (this != player) {
         this.socket.emit("newPlayer", {pseudo: player.pseudo});
     }
 };
-Player.prototype.emmitRefreshListPlayer = function() {
+Player.prototype.emitRefreshListPlayer = function() {
     var list = [];
     for (var i = 0; i < this.room.listPlayer.length; i++) {
         if (i != this.number) {
@@ -31,6 +31,11 @@ Player.prototype.emmitRefreshListPlayer = function() {
         }
     }
     this.socket.emit("refreshListPlayer", {listPlayer: list});
+};
+Player.prototype.emitStart = function() {
+    if (this != player) {
+        this.socket.emit("start");
+    }
 };
 
 
@@ -44,7 +49,7 @@ Room.prototype.addPlayer = function(player) {
     player.number = this.listPlayer.length;
     this.listPlayer[player.number] = player;
     for (var i= 0; i < this.listPlayer.length; i++) {
-        this.listPlayer[i].emmitNewPlayer(player);
+        this.listPlayer[i].emitNewPlayer(player);
     }
 };
 Room.prototype.deletePlayer = function(player) {
@@ -58,7 +63,12 @@ Room.prototype.deletePlayer = function(player) {
     }
     this.listPlayer = listTmp;
     for (var i= 0; i < this.listPlayer.length; i++) {
-        this.listPlayer[i].emmitRefreshListPlayer();
+        this.listPlayer[i].emitRefreshListPlayer();
+    }
+};
+Room.prototype.start = function() {
+    for (var i= 0; i < this.listPlayer.length; i++) {
+        this.listPlayer[i].emitStart();
     }
 };
 
@@ -169,6 +179,9 @@ io.on('connection', function (socket) {
             player.room = room;
             player.pseudo = data.pseudo;
             room.addPlayer(player);
+            if (room.listPlayer.length == 4) {
+                room.start();
+            }
         }
     });
 
