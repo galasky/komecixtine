@@ -116,16 +116,20 @@
 
 
     document.getElementById("CRoomName").onkeyup = function() {
+        CRoomName = false;
         socket.emit("testCRoomName", {room: document.getElementById("CRoomName").value});
     };
     document.getElementById("CPseudo").onkeyup = function() {
+        CPseudo = false;
         socket.emit("testCPseudo", {pseudo: document.getElementById("CPseudo").value});
     };
 
     document.getElementById("JRoomName").onkeyup = function() {
+        JRoomName = false;
         socket.emit("testJRoomName", {room: document.getElementById("JRoomName").value});
     };
     document.getElementById("JPseudo").onkeyup = function() {
+        JPseudo = false;
         socket.emit("testJPseudo", {pseudo: document.getElementById("JPseudo").value});
     };
 
