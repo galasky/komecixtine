@@ -26,7 +26,9 @@ Player.prototype.emmitNewPlayer = function(player) {
 Player.prototype.emmitRefreshListPlayer = function() {
     var list = [];
     for (var i = 0; i < this.room.listPlayer.length; i++) {
-        list[i] = this.room.listPlayer[i].pseudo;
+        if (i != this.number) {
+            list[i] = this.room.listPlayer[i].pseudo;
+        }
     }
     this.socket.emit("refreshListPlayer", {listPlayer: list});
 };
