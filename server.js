@@ -33,9 +33,7 @@ Player.prototype.emitRefreshListPlayer = function() {
     this.socket.emit("refreshListPlayer", {listPlayer: list});
 };
 Player.prototype.emitStart = function() {
-    if (this != player) {
         this.socket.emit("start");
-    }
 };
 
 
