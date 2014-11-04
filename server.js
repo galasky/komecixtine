@@ -23,9 +23,12 @@ Player.prototype.emmitNewPlayer = function(player) {
         this.socket.emit("newPlayer", {pseudo: player.pseudo});
     }
 };
-Player.prototype.emmitRefreshListPlayer = function(listPlayer) {
-    console.log("emmitRefreshListPlayer " + listPlayer);
-    this.socket.emit("refreshListPlayer", {listPlayer: this.room.listPlayer});
+Player.prototype.emmitRefreshListPlayer = function() {
+    var list = [];
+    for (var i = 0; i < this.room.listPlayer.length; i++) {
+        list[i] = this.room.listPlayer[i].pseudo;
+    }
+    this.socket.emit("refreshListPlayer", {listPlayer: list});
 };
 
 
@@ -53,7 +56,7 @@ Room.prototype.deletePlayer = function(player) {
     }
     this.listPlayer = listTmp;
     for (var i= 0; i < this.listPlayer.length; i++) {
-        this.listPlayer[i].emmitRefreshListPlayer(this.listPlayer);
+        this.listPlayer[i].emmitRefreshListPlayer();
     }
 };
 
