@@ -15,6 +15,7 @@ module.exports = function Stack() {
         this.cards.push(new Card(i + 1, "trefle"));
     }
 }
+var Stack = require('./Stack.js');
 Stack.prototype.pop = function (number) {
     var cards = [];
     for (var i = 0; i < number; i++) {

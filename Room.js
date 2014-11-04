@@ -7,6 +7,7 @@ module.exports = function Room(roomName,maxPlayer) {
     this.started = false;
     this.stack = null;
 }
+var Room = require('./Room.js');
 Room.prototype.addPlayer = function(player) {
     player.number = this.listPlayer.length;
     this.listPlayer[player.number] = player;
