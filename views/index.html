@@ -87,6 +87,23 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+
+    <div id="PlayingModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 id="TitlePlaying" class="modal-title"></h4>
+                </div>
+                <div id="Hands" class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button id="PClose" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <!--<button type="button" class="btn btn-primary"></button>-->
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
   </body>
 
   <script src='/socket.io/socket.io.js'></script>
@@ -113,7 +130,6 @@
         $("#MdlJoin").modal('show');
     });
 
-
     document.getElementById("CRoomName").onkeyup = function() {
         CRoomName = false;
         socket.emit("testCRoomName", {room: document.getElementById("CRoomName").value});
@@ -122,7 +138,6 @@
         CPseudo = false;
         socket.emit("testCPseudo", {pseudo: document.getElementById("CPseudo").value});
     };
-
     document.getElementById("JRoomName").onkeyup = function() {
         JRoomName = false;
         socket.emit("testJRoomName", {room: document.getElementById("JRoomName").value});
@@ -142,7 +157,7 @@
         $("#WaitingModal").modal('show');
     });
 
-      $('#WaitingModal').on('hidden.bs.modal', function (e) {
+    $('#WaitingModal').on('hidden.bs.modal', function (e) {
           socket.emit("quit");
       })
 
@@ -228,6 +243,11 @@
 
       socket.on("start", function(data) {
           $("#WaitingModal").modal('hide');
+          document.getElementById("Hands").textContent = "";
+          for (var i = 0; i < data.hands.length; i++) {
+              document.getElementById("Hands").textContent += "[" + data.hands[i].value + " " + data.hands[i].color + "] ";
+          }
+          $("#PlayingModal").modal('show');
       });
   </script>
 
