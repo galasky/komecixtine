@@ -113,11 +113,6 @@
         $("#MdlJoin").modal('show');
     });
 
-    $('#WClose').click(function(){
-        socket.emit("quit");
-    });
-
-
 
     document.getElementById("CRoomName").onkeyup = function() {
         CRoomName = false;
@@ -148,7 +143,7 @@
     });
 
       $('#WaitingModal').on('hidden.bs.modal', function (e) {
-          // do something...
+          socket.emit("quit");
       })
 
     $('#Join').click(function(){
