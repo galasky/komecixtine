@@ -43,7 +43,9 @@ Room.prototype.addPlayer = function(player) {
 };
 Room.prototype.deletePlayer = function(player) {
     var listTmp = [];
+    console.log("first loop");
     for (var i= 0; i < this.listPlayer.length; i++) {
+        console.log("i = " + i);
         if (i != player.number) {
             var p = this.listPlayer[i];
             p.number = listTmp.length;
@@ -51,6 +53,7 @@ Room.prototype.deletePlayer = function(player) {
         }
     }
     this.listPlayer = listTmp;
+    console.log("second loop");
     for (var i= 0; i < this.listPlayer.length; i++) {
         this.listPlayer[i].emmitRefreshListPlayer(this.listPlayer);
     }
