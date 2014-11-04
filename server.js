@@ -38,7 +38,7 @@ Player.prototype.emitStart = function() {
 };
 Player.prototype.takeCards = function(number) {
     console.log("takeCards " + this.pseudo);
-    this.hands = room.stack.pop(number);
+    this.hands = this.room.stack.pop(number);
 };
 
 function Card(value, color) {
