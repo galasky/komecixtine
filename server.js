@@ -16,7 +16,7 @@ function Player(pseudo, sock) {
     this.pseudo = pseudo;
     this.socket = sock;
     this.number = -1;
-    this.room;
+    this.room = null;
 }
 Player.prototype.emmitNewPlayer = function(player) {
     if (this != player) {
@@ -168,11 +168,15 @@ io.on('connection', function (socket) {
     });
 
     socket.on('quit', function (data) {
-        player.room.deletePlayer(player);
+        if (player.room != null) {
+            player.room.deletePlayer(player);
+        }
     });
 
     socket.on('disconnect', function () {
-        player.room.deletePlayer(player);
+        if (player.room != null) {
+            player.room.deletePlayer(player);
+        }
         console.log("disconnected");
     });
 });
