@@ -25,7 +25,7 @@ Player.prototype.emmitNewPlayer = function(player) {
 };
 Player.prototype.emmitRefreshListPlayer = function(listPlayer) {
     console.log("emmitRefreshListPlayer " + listPlayer);
-    this.socket.emit("refreshListPlayer", {listPlayer: listPlayer});
+    this.socket.emit("refreshListPlayer", {listPlayer: this.room.listPlayer});
 };
 
 
