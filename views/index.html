@@ -102,11 +102,15 @@
       socket.emit("testJRoomName", {room: document.getElementById("JRoomName").value});
       socket.emit("testJPseudo", {pseudo: document.getElementById("JPseudo").value});
     $('#BtnCreate').click(function(){
-    $("#MdlCreate").modal('show');
+        CPseudo = false;
+        CRoomName = false;
+        $("#MdlCreate").modal('show');
     });
 
     $('#BtnJoin').click(function(){
-    $("#MdlJoin").modal('show');
+        JPseudo = false;
+        JRoomName = false;
+        $("#MdlJoin").modal('show');
     });
 
     $('#WClose').click(function(){
