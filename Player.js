@@ -26,4 +26,5 @@ Player.prototype.emitStart = function() {
 };
 Player.prototype.takeCards = function(number) {
     this.hands = this.room.stack.pop(number);
+    console.log("carte 1 : " + this.hands[0]);
 };
