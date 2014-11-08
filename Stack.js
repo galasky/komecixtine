@@ -1,6 +1,7 @@
 var Card = require('./Card.js');
 
 module.exports = function Stack() {
+    this.carpet = [];
     this.cards = [];
     for (var i = 0; i < 13; i++) {
         this.cards.push(new Card(i + 1, "pic"));
@@ -24,3 +25,9 @@ Stack.prototype.pop = function (number) {
     }
     return cards;
 };
+Stack.prototype.drop = function (card) {
+    this.carpet.push(card);
+}
+Stack.prototype.recup = function () {
+    return this.carpet.pop();
+}

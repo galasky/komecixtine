@@ -98,6 +98,8 @@
                 </div>
                 <div id="Hands" class="modal-body">
                 </div>
+                <div id="Message" class="modal-body">
+                </div>
                 <div class="modal-footer">
                     <button id="PClose" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <!--<button type="button" class="btn btn-primary"></button>-->
@@ -249,6 +251,14 @@
               document.getElementById("Hands").textContent += "[" + data.hands[i].value + " " + data.hands[i].color + "] ";
           }
           $("#PlayingModal").modal('show');
+      });
+
+      socket.on("yourTurn", function() {
+          document.getElementById("Message").textContent = "Your Turn";
+      });
+
+      socket.on("endTurn", function() {
+          document.getElementById("Message").textContent = "End Turn";
       });
   </script>
 

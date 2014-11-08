@@ -6,6 +6,9 @@ module.exports = function Room(roomName,maxPlayer) {
     this.listPlayer = [];
     this.started = false;
     this.stack = null;
+    this.lastTurn = false;
+    this.finalCountDown = 0;
+    this.currentPlayer = 0;
 }
 var Room = require('./Room.js');
 Room.prototype.addPlayer = function(player) {
@@ -36,4 +39,25 @@ Room.prototype.start = function() {
         this.listPlayer[i].takeCards(4);
         this.listPlayer[i].emitStart();
     }
+    this.listPlayer[this.currentPlayer].yourTurn();
 };
+Room.prototype.end = function() {
+    for (var i= 0; i < this.listPlayer.length; i++) {
+        this.listPlayer[i].emitEnd();
+    }
+}
+Room.prototype.nextTurn = function() {
+    this.currentPlayer++;
+    if (this.currentPlayer >= this.maxPlayer) {
+        this.currentPlayer = 0;
+    }
+    if (this.lastTurn) {
+        this.finalCountDown++;
+    }
+    if (this.finalCountDown >= this.maxPlayer) {
+        this.end();
+    } else {
+        this.listPlayer[this.currentPlayer].yourTurn();
+    }
+
+}
