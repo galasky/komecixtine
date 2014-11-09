@@ -17,6 +17,10 @@ app.get('/komecixtine', function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
+app.get('/test', function (req, res) {
+    res.sendFile(__dirname + '/test.html');
+});
+
 app.get('/komecixtine/create', function (req, res) {
     var room = req.param("room");
 
