@@ -6,9 +6,9 @@ window.onload = function() {
     // 3 - Starting point
     var game = new Game(600, 585);
     // 4 - Preload resources
-    game.preload('/static/res/tapis.jpg',
-        '/static/res/cards.png',
-        '/static/res/penguinSheet.png');
+    game.preload('res/tapis.jpg',
+        'res/cards.png',
+        'res/penguinSheet.png');
     // 5 - Game settings
     game.fps = 60;
     game.scale = 1;
@@ -34,7 +34,7 @@ window.onload = function() {
             // 3 - Create child nodes
             label = new Label("Hi, Ocean!");
             bg = new Sprite(600, 585);
-            bg.image = game.assets['/static/res/tapis.jpg'];
+            bg.image = game.assets['res/tapis.jpg'];
             penguin = new Penguin(2, 0, false);
             penguin.x = penguin.xInit = game.width/2 - penguin.width/2;
             penguin.y = penguin.yInit = 280;
@@ -73,7 +73,7 @@ window.onload = function() {
         initialize: function(value, color, hiden) {
             // 1 - Call superclass constructor
             Sprite.apply(this,[192, 279]);
-            this.image = Game.instance.assets['/static/res/cards.png'];
+            this.image = Game.instance.assets['res/cards.png'];
             this.scale(.25,.25);
             this.animationDuration = 0;
             this.select = false;
