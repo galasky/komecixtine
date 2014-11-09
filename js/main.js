@@ -101,8 +101,8 @@ window.onload = function() {
         },
         move: function(evt) {
             this.select = true;
-            this.x = evt.x;
-            this.y = evt.y;
+            this.x = evt.x - 192 * .5;
+            this.y = evt.y - 279 * .5;
         },
         updateAnimation: function (evt) {
             this.animationDuration += evt.elapsed * 0.001;

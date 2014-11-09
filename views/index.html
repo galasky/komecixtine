@@ -250,7 +250,8 @@
           for (var i = 0; i < data.hands.length; i++) {
               document.getElementById("Hands").textContent += "[" + data.hands[i].value + " " + data.hands[i].color + "] ";
           }
-          $("#PlayingModal").modal('show');
+          document.location.href = "hhtp://www.galasky.fr/test";
+//          $("#PlayingModal").modal('show');
       });
 
       socket.on("yourTurn", function() {
