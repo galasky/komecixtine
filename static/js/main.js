@@ -53,6 +53,11 @@ window.onload = function() {
             var c = new Carte(this, game.width * .5 - 192 * .5 - 192 / 2 * .25, game.height * .25 - 279 * .25, 1, 3, false);
             this.addChild(c);
         },
+        drop: function(carte) {
+            carte.xInit = this.scene.carpet.x;
+            carte.yInit = this.scene.carpet.y;
+            carte.show();
+        },
         up: function(node) {
             this.removeChild(node);
             this.addChild(node);
@@ -125,15 +130,10 @@ window.onload = function() {
             this.select = true;
             this.x = evt.x - 192 * .5;
             this.y = evt.y - 279 * .5;
-            if (this.x > 303 && this.x < 303 + 42 && this.y > 252 && this.y < 252 + 67) {
-                console.log("ok");
-            }
         },
         end: function(evt) {
-            if(this.within(this.scene.stack, 192 * .25)) {
-                this.xInit = this.scene.stack.x;
-                this.yInit = this.scene.stack.y;
-                this.show();
+            if(this.within(this.scene.carpet, 192 * .25)) {
+                this.scene.drop(this);
             }
             console.log("x = " + this.x + " y = " + this.y);
             this.x = this.xInit;
