@@ -41,10 +41,10 @@ window.onload = function() {
             this.carpet = new Carpet(this, game.width * .5 - 192 * .5 - 192 / 2 * .25 + 192 *.25, game.height * .25);
             this.addChild(this.stack);
             this.addChild(this.carpet);
-            this.carte1 = new Carte(this, game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279, 2, 0, true);
-            this.carte2 = new Carte(this, game.width * .5 - 192 * .5 + 192 / 2 * .25, 585 - 279, 5, 2, true);
-            this.carte3 = new Carte(this, game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279 + 279 * .25, 8, 1, false);
-            this.carte4 = new Carte(this, game.width * .5 - 192 * .5 + 192 / 2 * .25, 585 - 279 + 279 *.25, 1, 3, false);
+            this.carte1 = new Carte(true, this, game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279, 2, 0, true);
+            this.carte2 = new Carte(true, this, game.width * .5 - 192 * .5 + 192 / 2 * .25, 585 - 279, 5, 2, true);
+            this.carte3 = new Carte(true, this, game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279 + 279 * .25, 8, 1, false);
+            this.carte4 = new Carte(true, this, game.width * .5 - 192 * .5 + 192 / 2 * .25, 585 - 279 + 279 *.25, 1, 3, false);
             this.addChild(this.carte1);
             this.addChild(this.carte2);
             this.addChild(this.carte3);
@@ -63,6 +63,7 @@ window.onload = function() {
         drop: function(carte) {
             carte.xInit = this.scene.carpet.x;
             carte.yInit = this.scene.carpet.y;
+            carte.hand = false;
             carte.show();
         },
         up: function(node) {
@@ -122,10 +123,11 @@ window.onload = function() {
 
     var Carte = Class.create(Sprite, {
         // The player character.
-        initialize: function(scene, x, y, value, color, hiden) {
+        initialize: function(hand, scene, x, y, value, color, hiden) {
             // 1 - Call superclass constructor
             Sprite.apply(this,[192, 279]);
             this.image = Game.instance.assets['/static/res/cards.jpg'];
+            this.hand = hand;
             this.scene = scene;
             this.animationDuration = 0;
             this.select = false;
@@ -161,6 +163,18 @@ window.onload = function() {
             if(this.within(this.scene.carpet, 192 * .25)) {
                 this.scene.drop(this);
             }
+            if(this.within(this.scene.carte1, 192 * .25)) {
+                this.scene.carte1.put(this);
+            }
+            if(this.within(this.scene.carte2, 192 * .25)) {
+                this.scene.carte2.put(this);
+            }
+            if(this.within(this.scene.carte3, 192 * .25)) {
+                this.scene.carte3.put(this);
+            }
+            if(this.within(this.scene.carte4, 192 * .25)) {
+                this.scene.carte4.put(this);
+            }
             console.log("x = " + this.x + " y = " + this.y);
             this.x = this.xInit;
             this.y = this.yInit;
@@ -178,6 +192,13 @@ window.onload = function() {
         },
         colision: function(x, y) {
             return (x < this.x + 30 && x > this.x && y < this.y + 43 && y > this.y);
+        },
+        put: function(carte) {
+            if (this.hand) {
+                carte.x = this.x;
+                carte.y = this.y;
+                this.scene.drop(this);
+            }
         },
         hide: function() {
             this.frame = 54;
