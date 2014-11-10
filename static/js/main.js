@@ -163,18 +163,21 @@ window.onload = function() {
             if(this.within(this.scene.carpet, 192 * .25)) {
                 this.scene.drop(this);
             }
-            if(this.within(this.scene.carte1, 192 * .25)) {
-                this.scene.carte1.put(this);
+            if (!this.hand) {
+                if(this.within(this.scene.carte1, 192 * .25)) {
+                    this.scene.carte1.put(this);
+                }
+                if(this.within(this.scene.carte2, 192 * .25)) {
+                    this.scene.carte2.put(this);
+                }
+                if(this.within(this.scene.carte3, 192 * .25)) {
+                    this.scene.carte3.put(this);
+                }
+                if(this.within(this.scene.carte4, 192 * .25)) {
+                    this.scene.carte4.put(this);
+                }
             }
-            if(this.within(this.scene.carte2, 192 * .25)) {
-                this.scene.carte2.put(this);
-            }
-            if(this.within(this.scene.carte3, 192 * .25)) {
-                this.scene.carte3.put(this);
-            }
-            if(this.within(this.scene.carte4, 192 * .25)) {
-                this.scene.carte4.put(this);
-            }
+
             console.log("x = " + this.x + " y = " + this.y);
             this.x = this.xInit;
             this.y = this.yInit;
