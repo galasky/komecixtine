@@ -39,12 +39,19 @@ window.onload = function() {
             this.addChild(bg);
             this.stack = new Stack(this, game.width * .5 - 192 * .5 - 192 / 2 * .25, game.height * .25);
             this.carpet = new Carpet(this, game.width * .5 - 192 * .5 - 192 / 2 * .25 + 192 *.25, game.height * .25);
-            this.hands = new Hands();
             this.addChild(this.stack);
             this.addChild(this.carpet);
-            this.addChild(this.hands);
+            this.carte1 = new Carte(this, game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279, 2, 0, true);
+            this.carte2 = new Carte(this, game.width * .5 - 192 * .5 + 192 / 2 * .25, 585 - 279, 5, 2, true);
+            this.carte3 = new Carte(this, game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279 + 279 * .25, 8, 1, false);
+            this.carte4 = new Carte(this, game.width * .5 - 192 * .5 + 192 / 2 * .25, 585 - 279 + 279 *.25, 1, 3, false);
+            this.addChild(this.carte1);
+            this.addChild(this.carte2);
+            this.addChild(this.carte3);
+            this.addChild(this.carte4);
+//            this.addChild(this.hands);
 
-            this.addChild(label);
+//            this.addChild(label);
 //            this.addEventListener(Event.TOUCH_START,this.handleTouchControl);
             this.addEventListener(Event.TOUCH_MOVE, this.move);
 //            this.addEventListener(Event.TOUCH_END, this.handleEndControl);
@@ -63,16 +70,6 @@ window.onload = function() {
             this.addChild(node);
         }
 
-    });
-
-    var Hands = Class.create(Scene, {
-        initialize: function() {
-            Scene.apply(this);
-            this.addChild(new Carte(this, game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279, 2, 0, true));
-            this.addChild(new Carte(this, game.width * .5 - 192 * .5 + 192 / 2 * .25, 585 - 279, 5, 2, true));
-            this.addChild(new Carte(this, game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279 + 279 * .25, 8, 1, false));
-            this.addChild(new Carte(this, game.width * .5 - 192 * .5 + 192 / 2 * .25, 585 - 279 + 279 *.25, 1, 3, false));
-        }
     });
 //
 //    var Hands = Class.create(Sprite, {
