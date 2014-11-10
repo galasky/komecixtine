@@ -90,6 +90,7 @@ window.onload = function() {
             console.log("frame " + this.frame);
             this.addEventListener(Event.TOUCH_START, this.touch);
             this.addEventListener(Event.TOUCH_MOVE, this.move);
+            this.addEventListener(Event.TOUCH_END, this.end);
 //            this.addEventListener(Event.ENTER_FRAME, this.updateAnimation);
         },
         touch: function(evt) {
@@ -103,6 +104,10 @@ window.onload = function() {
             this.select = true;
             this.x = evt.x - 192 * .5;
             this.y = evt.y - 279 * .5;
+        },
+        end: function(evt) {
+            this.x = this.xInit;
+            this.y = this.yInit;
         },
         updateAnimation: function (evt) {
             this.animationDuration += evt.elapsed * 0.001;
