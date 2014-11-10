@@ -112,7 +112,7 @@ window.onload = function() {
             }
         },
         end: function(evt) {
-            if(sprite.within(sprite2, 40)) {
+            if(this.within(this.scene.stack, 40)) {
                 this.xInit = this.scene.stack.x;
                 this.yInit = this.scene.stack.y;
                 this.show();
