@@ -112,7 +112,7 @@ window.onload = function() {
             }
         },
         end: function(evt) {
-            if(this.within(this.scene.stack, 40)) {
+            if(this.within(this.scene.stack, 192 / 2)) {
                 this.xInit = this.scene.stack.x;
                 this.yInit = this.scene.stack.y;
                 this.show();
