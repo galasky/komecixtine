@@ -25,7 +25,7 @@ window.onload = function() {
     var SceneGame = Class.create(Scene, {
         // The main gameplay scene.
         initialize: function() {
-            var game, label, bg, penguin;
+            var game, label, bg;
 
             // 1 - Call superclass constructor
             Scene.apply(this);
@@ -35,42 +35,23 @@ window.onload = function() {
             label = new Label("Hi, Ocean!");
             bg = new Sprite(600, 585);
             bg.image = game.assets['/static/res/tapis.jpg'];
-            penguin = new Penguin(2, 0, false);
-            penguin.x = penguin.xInit = game.width/2 - penguin.width/2;
-            penguin.y = penguin.yInit = 280;
-            this.penguin = penguin;
 
             // 4 - Add child nodes
             this.addChild(bg);
-            this.addChild(penguin);
+            this.addChild(new Carte(game.width/2, 280, 2, 0, false));
+            this.addChild(new Carte(game.width/2 + 192, 280, 5, 2, false));
+            this.addChild(new Carte(game.width/2, 280 - 279, 8, 1, true));
+            this.addChild(new Carte(game.width/2 + 192, 280 - 279, 1, 3, true));
             this.addChild(label);
 //            this.addEventListener(Event.TOUCH_START,this.handleTouchControl);
 //            this.addEventListener(Event.TOUCH_MOVE, this.handleMoveControl);
 //            this.addEventListener(Event.TOUCH_END, this.handleEndControl);
-        },
-        handleTouchControl: function (evt) {
-            var laneWidth, lane;
-            laneWidth = 320/3;
-            lane = Math.floor(evt.x/laneWidth);
-            lane = Math.max(Math.min(2,lane),0);
-            this.penguin.switchToLaneNumber(lane);
-        },
-        handleMoveControl: function (evt) {
-            if (this.penguin.select || this.penguin.colision(evt.x, evt.y)) {
-                this.penguin.select = true;
-                this.penguin.x = evt.x - 15;
-                this.penguin.y = evt.y - 43 / 2;
-            }
-        },
-        handleEndControl: function (evt) {
-            this.penguin.select = false;
-            this.penguin.goInit();
         }
     });
 
-    var Penguin = Class.create(Sprite, {
+    var Carte = Class.create(Sprite, {
         // The player character.
-        initialize: function(value, color, hiden) {
+        initialize: function(x, y, value, color, hiden) {
             // 1 - Call superclass constructor
             Sprite.apply(this,[192, 279]);
             this.image = Game.instance.assets['/static/res/cards.png'];
@@ -78,6 +59,8 @@ window.onload = function() {
             this.animationDuration = 0;
             this.select = false;
             this.hiden = hiden;
+            this.x = x;
+            this.y = y;
             this.xInit = this.x;
             this.yInit = this.y;
             this.value = value - 1;
