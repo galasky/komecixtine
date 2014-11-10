@@ -38,6 +38,7 @@ window.onload = function() {
             // 4 - Add child nodes
             this.addChild(bg);
             this.stack = new Stack(this, game.width * .5 - 192 * .5 - 192 / 2 * .25, game.height * .25);
+            this.carpet = new Carpet(this, game.width * .5 - 192 * .5 - 192 / 2 * .25 + 192 *.25, game.height * .25);
             this.addChild(this.stack);
             this.addChild(new Carte(this, game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279, 2, 0, true));
             this.addChild(new Carte(this, game.width * .5 - 192 * .5 + 192 / 2 * .25, 585 - 279, 5, 2, true));
@@ -72,6 +73,19 @@ window.onload = function() {
         },
         touch: function(evt) {
             this.scene.pioche();
+        }
+    });
+
+
+    var Carpet = Class.create(Sprite, {
+        initialize: function(scene, x, y) {
+            Sprite.apply(this,[192, 279]);
+            this.image = Game.instance.assets['/static/res/cards.jpg'];
+            this.frame = 55;
+            this.scene = scene;
+            this.x = x;
+            this.y = y;
+            this.scale(.25,.25);
         }
     });
 
