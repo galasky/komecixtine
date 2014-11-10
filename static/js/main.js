@@ -39,15 +39,14 @@ window.onload = function() {
             this.addChild(bg);
             this.stack = new Stack(this, game.width * .5 - 192 * .5 - 192 / 2 * .25, game.height * .25);
             this.carpet = new Carpet(this, game.width * .5 - 192 * .5 - 192 / 2 * .25 + 192 *.25, game.height * .25);
+            this.hands = new Hands();
             this.addChild(this.stack);
             this.addChild(this.carpet);
-            this.addChild(new Carte(this, game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279, 2, 0, true));
-            this.addChild(new Carte(this, game.width * .5 - 192 * .5 + 192 / 2 * .25, 585 - 279, 5, 2, true));
-            this.addChild(new Carte(this, game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279 + 279 * .25, 8, 1, false));
-            this.addChild(new Carte(this, game.width * .5 - 192 * .5 + 192 / 2 * .25, 585 - 279 + 279 *.25, 1, 3, false));
+            this.addChild(this.hands);
+
             this.addChild(label);
 //            this.addEventListener(Event.TOUCH_START,this.handleTouchControl);
-//            this.addEventListener(Event.TOUCH_MOVE, this.handleMoveControl);
+            this.addEventListener(Event.TOUCH_MOVE, this.move);
 //            this.addEventListener(Event.TOUCH_END, this.handleEndControl);
         },
         pioche: function() {
@@ -65,6 +64,34 @@ window.onload = function() {
         }
 
     });
+
+    var Hands = Class.create(Node, {
+        initialize: function() {
+            this.addChild(new Carte(this, game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279, 2, 0, true));
+            this.addChild(new Carte(this, game.width * .5 - 192 * .5 + 192 / 2 * .25, 585 - 279, 5, 2, true));
+            this.addChild(new Carte(this, game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279 + 279 * .25, 8, 1, false));
+            this.addChild(new Carte(this, game.width * .5 - 192 * .5 + 192 / 2 * .25, 585 - 279 + 279 *.25, 1, 3, false));
+        }
+    });
+//
+//    var Hands = Class.create(Sprite, {
+//        initialize: function(scene, x, y) {
+//            Sprite.apply(this,[192 * 2, 279 * 2]);
+//            this.scene = scene;
+//            this.x = x;
+//            this.y = y;
+//            this.addChild(new Carte(this, game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279, 2, 0, true));
+//            this.addChild(new Carte(this, game.width * .5 - 192 * .5 + 192 / 2 * .25, 585 - 279, 5, 2, true));
+//            this.addChild(new Carte(this, game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279 + 279 * .25, 8, 1, false));
+//            this.addChild(new Carte(this, game.width * .5 - 192 * .5 + 192 / 2 * .25, 585 - 279 + 279 *.25, 1, 3, false));
+//            this.scale(.25,.25);
+////            this.addEventListener(Event.TOUCH_START, this.touch);
+//            this.addEventListener(Event.TOUCH_MOVE, this.move);
+//        },
+//        move: function(evt) {
+//
+//        }
+//    });
 
     var Stack = Class.create(Sprite, {
         initialize: function(scene, x, y) {
