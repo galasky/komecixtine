@@ -53,7 +53,7 @@ window.onload = function() {
         initialize: function(x, y, value, color, hiden) {
             // 1 - Call superclass constructor
             Sprite.apply(this,[192, 279]);
-            this.image = Game.instance.assets['/static/res/cards.png'];
+            this.image = Game.instance.assets['/static/res/cards.jpg'];
             this.scale(.25,.25);
             this.animationDuration = 0;
             this.select = false;
