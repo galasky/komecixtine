@@ -105,7 +105,7 @@ window.onload = function() {
 //            this.addEventListener(Event.ENTER_FRAME, this.updateAnimation);
         },
         touch: function(evt) {
-
+            this.scene.up(this);
         },
         move: function(evt) {
             this.select = true;
@@ -120,7 +120,6 @@ window.onload = function() {
                 this.xInit = this.scene.stack.x;
                 this.yInit = this.scene.stack.y;
                 this.show();
-                this.scene.up(this);
             }
             console.log("x = " + this.x + " y = " + this.y);
             this.x = this.xInit;
