@@ -112,7 +112,7 @@ window.onload = function() {
             }
         },
         end: function(evt) {
-            if(this.intersect(this.scene.stack)) {
+            if(sprite.within(sprite2, 40)) {
                 this.xInit = this.scene.stack.x;
                 this.yInit = this.scene.stack.y;
                 this.show();
