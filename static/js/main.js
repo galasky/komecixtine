@@ -159,6 +159,7 @@ window.onload = function() {
             this.y = evt.y - 279 * .5;
         },
         end: function(evt) {
+            console.log("hand " + this.hand);
             if(this.within(this.scene.carpet, 192 * .25)) {
                 this.scene.drop(this);
             }
