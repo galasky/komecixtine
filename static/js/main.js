@@ -37,10 +37,10 @@ window.onload = function() {
 
             // 4 - Add child nodes
             this.addChild(bg);
-            this.addChild(new Carte(game.width/2, 280, 2, 0, false));
-            this.addChild(new Carte(game.width/2 + 192 *.25, 280, 5, 2, false));
-            this.addChild(new Carte(game.width/2, 280 + 279 * .25, 8, 1, true));
-            this.addChild(new Carte(game.width/2 + 192 * .25, 280 + 279 *.25, 1, 3, true));
+            this.addChild(new Carte(game.width * .25 / 2, 280, 2, 0, true));
+            this.addChild(new Carte(game.width * .25 / 2 + 192 *.25, 280, 5, 2, true));
+            this.addChild(new Carte(game.width * .25 / 2, 280 + 279 * .25, 8, 1, false));
+            this.addChild(new Carte(game.width * .25 / 2 + 192 * .25, 280 + 279 *.25, 1, 3, false));
             this.addChild(label);
 //            this.addEventListener(Event.TOUCH_START,this.handleTouchControl);
 //            this.addEventListener(Event.TOUCH_MOVE, this.handleMoveControl);
@@ -64,7 +64,7 @@ window.onload = function() {
             this.yInit = this.y;
             this.value = value - 1;
             this.color = color;
-            if (this.hide) {
+            if (this.hiden) {
                 this.hide();
             } else {
                 this.show();
