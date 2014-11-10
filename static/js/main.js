@@ -37,7 +37,8 @@ window.onload = function() {
 
             // 4 - Add child nodes
             this.addChild(bg);
-            this.addChild(new Stack(this, game.width * .5 - 192 * .5 - 192 / 2 * .25, game.height * .25));
+            this.stack = new Stack(this, game.width * .5 - 192 * .5 - 192 / 2 * .25, game.height * .25);
+            this.addChild(this.stack);
             this.addChild(new Carte(this, game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279, 2, 0, true));
             this.addChild(new Carte(this, game.width * .5 - 192 * .5 + 192 / 2 * .25, 585 - 279, 5, 2, true));
             this.addChild(new Carte(this, game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279 + 279 * .25, 8, 1, false));
@@ -111,6 +112,11 @@ window.onload = function() {
             }
         },
         end: function(evt) {
+            if(this.intersect(this.scene.stack)) {
+                this.xInit = this.scene.stack.x;
+                this.yInit = this.scene.stack.y;
+                this.show();
+            }
             if (this.x > 185 && this.x < 228 + 42 && this.y > 145 && this.y < 210) {
                 this.xInit = game.width * .5 - 192 * .5 - 192 / 2 * .25 + 192 * .25;
                 this.yInit = game.height * .25;
