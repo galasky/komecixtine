@@ -112,8 +112,9 @@ window.onload = function() {
         },
         end: function(evt) {
             if (this.x > 185 && this.x < 228 + 42 && this.y > 145 && this.y < 210) {
-                this.xInit = game.width * .5 - 192 * .5 - 192 / 2 * .25;
+                this.xInit = game.width * .5 - 192 * .5 - 192 / 2 * .25 + 192 * .25;
                 this.yInit = game.height * .25;
+                this.show();
             }
             console.log("x = " + this.x + " y = " + this.y);
             this.x = this.xInit;
