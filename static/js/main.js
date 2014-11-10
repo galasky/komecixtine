@@ -116,6 +116,8 @@ window.onload = function() {
                 this.xInit = this.scene.stack.x;
                 this.yInit = this.scene.stack.y;
                 this.show();
+                this.scene.removeChild(this);
+                this.scene.addChild(this);
             }
             console.log("x = " + this.x + " y = " + this.y);
             this.x = this.xInit;
