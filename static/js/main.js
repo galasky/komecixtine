@@ -115,6 +115,7 @@ window.onload = function() {
                 this.xInit = game.width * .5 - 192 * .5 - 192 / 2 * .25;
                 this.yInit = game.height * .25;
             }
+            console.log("x = " + this.x + " y = " + this.y);
             this.x = this.xInit;
             this.y = this.yInit;
         },
