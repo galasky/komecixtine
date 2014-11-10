@@ -111,7 +111,7 @@ window.onload = function() {
             }
         },
         end: function(evt) {
-            if (this.x > 303 && this.x < 303 + 42 && this.y > 252 && this.y < 252 + 67) {
+            if (this.x > 185 && this.x < 228 + 42 && this.y > 145 && this.y < 210) {
                 this.xInit = game.width * .5 - 192 * .5 - 192 / 2 * .25;
                 this.yInit = game.height * .25;
             }
