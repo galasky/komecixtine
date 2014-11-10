@@ -51,6 +51,10 @@ window.onload = function() {
         pioche: function() {
             var c = new Carte(this, game.width * .5 - 192 * .5 - 192 / 2 * .25, game.height * .25 - 279 * .25, 1, 3, false);
             this.addChild(c);
+        },
+        up: function(node) {
+            this.removeChild(node);
+            this.addChild(node);
         }
 
     });
@@ -116,8 +120,7 @@ window.onload = function() {
                 this.xInit = this.scene.stack.x;
                 this.yInit = this.scene.stack.y;
                 this.show();
-                this.scene.removeChild(this);
-                this.scene.addChild(this);
+                this.scene.up(this);
             }
             console.log("x = " + this.x + " y = " + this.y);
             this.x = this.xInit;
