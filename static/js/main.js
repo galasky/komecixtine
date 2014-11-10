@@ -68,8 +68,9 @@ window.onload = function() {
                 this.hide();
             } else {
                 this.show();
-            this.scale(.25,.25);
+
             }
+            this.scale(.25,.25);
             console.log("frame " + this.frame);
             this.addEventListener(Event.TOUCH_START, this.touch);
             this.addEventListener(Event.TOUCH_MOVE, this.move);
