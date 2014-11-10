@@ -38,17 +38,17 @@ window.onload = function() {
             // 4 - Add child nodes
             this.addChild(bg);
             this.addChild(new Stack(this, game.width * .5 - 192 * .5 - 192 / 2 * .25, game.height * .25));
-            this.addChild(new Carte(game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279, 2, 0, true));
-            this.addChild(new Carte(game.width * .5 - 192 * .5 + 192 / 2 * .25, 585 - 279, 5, 2, true));
-            this.addChild(new Carte(game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279 + 279 * .25, 8, 1, false));
-            this.addChild(new Carte(game.width * .5 - 192 * .5 + 192 / 2 * .25, 585 - 279 + 279 *.25, 1, 3, false));
+            this.addChild(new Carte(this, game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279, 2, 0, true));
+            this.addChild(new Carte(this, game.width * .5 - 192 * .5 + 192 / 2 * .25, 585 - 279, 5, 2, true));
+            this.addChild(new Carte(this, game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279 + 279 * .25, 8, 1, false));
+            this.addChild(new Carte(this, game.width * .5 - 192 * .5 + 192 / 2 * .25, 585 - 279 + 279 *.25, 1, 3, false));
             this.addChild(label);
 //            this.addEventListener(Event.TOUCH_START,this.handleTouchControl);
 //            this.addEventListener(Event.TOUCH_MOVE, this.handleMoveControl);
 //            this.addEventListener(Event.TOUCH_END, this.handleEndControl);
         },
         pioche: function() {
-            var c = new Carte(game.width * .5 - 192 * .5 - 192 / 2 * .25, game.height * .25 - 279 * .25, 1, 3, false);
+            var c = new Carte(this, game.width * .5 - 192 * .5 - 192 / 2 * .25, game.height * .25 - 279 * .25, 1, 3, false);
             this.addChild(c);
         }
 
@@ -72,11 +72,11 @@ window.onload = function() {
 
     var Carte = Class.create(Sprite, {
         // The player character.
-        initialize: function(x, y, value, color, hiden) {
+        initialize: function(scene, x, y, value, color, hiden) {
             // 1 - Call superclass constructor
             Sprite.apply(this,[192, 279]);
             this.image = Game.instance.assets['/static/res/cards.jpg'];
-
+            this.scene = scene;
             this.animationDuration = 0;
             this.select = false;
             this.hiden = hiden;
@@ -100,11 +100,7 @@ window.onload = function() {
 //            this.addEventListener(Event.ENTER_FRAME, this.updateAnimation);
         },
         touch: function(evt) {
-            if (this.hiden) {
-                this.show();
-            } else {
-                this.hide();
-            }
+
         },
         move: function(evt) {
             this.select = true;
@@ -112,6 +108,10 @@ window.onload = function() {
             this.y = evt.y - 279 * .5;
         },
         end: function(evt) {
+            if (this.x > 303 && this.x < 303 + 42 && this.y > 252 && this.y < 252 + 67) {
+                this.xInit = game.width * .5 - 192 * .5 - 192 / 2 * .25;
+                this.yInit = game.height * .25;
+            }
             this.x = this.xInit;
             this.y = this.yInit;
         },
