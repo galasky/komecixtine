@@ -53,7 +53,6 @@ window.onload = function() {
 
 //            this.addChild(label);
 //            this.addEventListener(Event.TOUCH_START,this.handleTouchControl);
-            this.addEventListener(Event.TOUCH_MOVE, this.move);
 //            this.addEventListener(Event.TOUCH_END, this.handleEndControl);
         },
         pioche: function() {
