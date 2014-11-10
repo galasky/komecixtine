@@ -65,7 +65,7 @@ window.onload = function() {
 
     });
 
-    var Hands = Class.create(Node, {
+    var Hands = Class.create(Scene, {
         initialize: function() {
             this.addChild(new Carte(this, game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279, 2, 0, true));
             this.addChild(new Carte(this, game.width * .5 - 192 * .5 + 192 / 2 * .25, 585 - 279, 5, 2, true));
