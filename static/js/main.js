@@ -7,8 +7,7 @@ window.onload = function() {
     var game = new Game(600, 585);
     // 4 - Preload resources
     game.preload('/static/res/tapis.jpg',
-        '/static/res/cards.png',
-        '/static/res/penguinSheet.png');
+        '/static/res/cards.jpg');
     // 5 - Game settings
     game.fps = 60;
     game.scale = 1;
