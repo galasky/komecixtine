@@ -37,7 +37,7 @@ window.onload = function() {
 
             // 4 - Add child nodes
             this.addChild(bg);
-            this.addChild(new Stack(game.width * .5, game.height * .5));
+            this.addChild(new Stack(game.width * .25, game.height * .25));
             this.addChild(new Carte(game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279, 2, 0, true));
             this.addChild(new Carte(game.width * .5 - 192 * .5 + 192 / 2 * .25, 585 - 279, 5, 2, true));
             this.addChild(new Carte(game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279 + 279 * .25, 8, 1, false));
