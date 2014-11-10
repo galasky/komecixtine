@@ -54,6 +54,8 @@ window.onload = function() {
             Sprite.apply(this,[192, 279]);
             this.image = Game.instance.assets['/static/res/cards.jpg'];
             this.frame = 54;
+            this.x = x;
+            this.y = y;
             this.scale(.25,.25);
             this.addEventListener(Event.TOUCH_START, this.touch);
         },
