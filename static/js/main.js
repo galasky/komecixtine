@@ -37,10 +37,10 @@ window.onload = function() {
 
             // 4 - Add child nodes
             this.addChild(bg);
-            this.addChild(new Carte(game.width * .25 / 2, 280, 2, 0, true));
-            this.addChild(new Carte(game.width * .25 / 2 + 192 *.25, 280, 5, 2, true));
-            this.addChild(new Carte(game.width * .25 / 2, 280 + 279 * .25, 8, 1, false));
-            this.addChild(new Carte(game.width * .25 / 2 + 192 * .25, 280 + 279 *.25, 1, 3, false));
+            this.addChild(new Carte(game.width * .5 / 2, 280, 2, 0, true));
+            this.addChild(new Carte(game.width * .5 / 2 + 192 *.25, 280, 5, 2, true));
+            this.addChild(new Carte(game.width * .5 / 2, 280 + 279 * .25, 8, 1, false));
+            this.addChild(new Carte(game.width * .5 / 2 + 192 * .25, 280 + 279 *.25, 1, 3, false));
             this.addChild(label);
 //            this.addEventListener(Event.TOUCH_START,this.handleTouchControl);
 //            this.addEventListener(Event.TOUCH_MOVE, this.handleMoveControl);
