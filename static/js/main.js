@@ -106,6 +106,9 @@ window.onload = function() {
             this.select = true;
             this.x = evt.x - 192 * .5;
             this.y = evt.y - 279 * .5;
+            if (this.x > 303 && this.x < 303 + 42 && this.y > 252 && this.y < 252 + 67) {
+                console.log("ok");
+            }
         },
         end: function(evt) {
             if (this.x > 303 && this.x < 303 + 42 && this.y > 252 && this.y < 252 + 67) {
