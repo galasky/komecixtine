@@ -54,7 +54,7 @@ window.onload = function() {
             // 1 - Call superclass constructor
             Sprite.apply(this,[192, 279]);
             this.image = Game.instance.assets['/static/res/cards.jpg'];
-            this.scale(.25,.25);
+
             this.animationDuration = 0;
             this.select = false;
             this.hiden = hiden;
@@ -68,6 +68,7 @@ window.onload = function() {
                 this.hide();
             } else {
                 this.show();
+            this.scale(.25,.25);
             }
             console.log("frame " + this.frame);
             this.addEventListener(Event.TOUCH_START, this.touch);
