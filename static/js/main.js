@@ -163,22 +163,20 @@ window.onload = function() {
             if (!this.hand) {
                 if(this.within(this.scene.carte1, 192 * .25)) {
                     this.scene.carte1.put(this);
-                }
-                if(this.within(this.scene.carte2, 192 * .25)) {
+                } else if(this.within(this.scene.carte2, 192 * .25)) {
                     this.scene.carte2.put(this);
-                }
-                if(this.within(this.scene.carte3, 192 * .25)) {
+                } else if(this.within(this.scene.carte3, 192 * .25)) {
                     this.scene.carte3.put(this);
-                }
-                if(this.within(this.scene.carte4, 192 * .25)) {
+                } else if(this.within(this.scene.carte4, 192 * .25)) {
                     this.scene.carte4.put(this);
+                } else {
+                    this.x = this.xInit;
+                    this.y = this.yInit;
                 }
             } else {
-                console.log("hand " + this.hand);
                 if(this.within(this.scene.carpet, 192 * .25)) {
                     this.scene.drop(this);
                 }
-                console.log("value " + this.value);
                 this.x = this.xInit;
                 this.y = this.yInit;
             }
