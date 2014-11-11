@@ -178,7 +178,7 @@ window.onload = function() {
                 if(this.within(this.scene.carpet, 192 * .25)) {
                     this.scene.drop(this);
                 }
-                console.log("x = " + this.x + " y = " + this.y);
+                console.log("value " + this.value);
                 this.x = this.xInit;
                 this.y = this.yInit;
             }
