@@ -113,6 +113,7 @@ window.onload = function() {
             if (carte.hand) {
                 if (this.pioched != null) {
                     this.reverse(carte);
+                    return ;
                 } else {
                     if (this.carpet.stack.length > 0) {
                         var last = this.carpet.stack[this.carpet.stack.length - 1];
