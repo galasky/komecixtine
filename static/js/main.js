@@ -169,9 +169,11 @@ window.onload = function() {
             this.droped = false;
         },
         move: function(evt) {
-            this.select = true;
-            this.x = evt.x - 192 * .5;
-            this.y = evt.y - 279 * .5;
+            if (!this.droped) {
+                this.select = true;
+                this.x = evt.x - 192 * .5;
+                this.y = evt.y - 279 * .5;
+            }
         },
         end: function(evt) {
             if(this.within(this.scene.carpet, 192 * .25)) {
