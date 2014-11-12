@@ -74,7 +74,7 @@ window.onload = function() {
             m.droped = true;
             this.hand.push(m);
             this.addChild(m);
-            m.xInit = game.width * .5 - 192 * .5 + 192 / 2 * .25 + 192 * .25 * ((this.malu / 2) + 1);
+            m.xInit = game.width * .5 - 192 * .5 + 192 / 2 * .25 + 192 * .25 * ((this.malu - (this.malu % 2)) / 2 + 1);
             m.yInit = 585 - 279 + (this.malu % 2 == 1 ? 279 * .25 : 0);
             this.malu++;
         },
