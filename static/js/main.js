@@ -100,6 +100,7 @@ window.onload = function() {
                     this.pioched.xInit = c.xInit;
                     this.pioched.yInit = c.yInit;
                     this.pioched.hand = true;
+                    this.pioched.hiden = true;
                     this.pioched = null;
                 }
             }
