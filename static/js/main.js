@@ -67,6 +67,36 @@ window.onload = function() {
                 this.addChild(c);
             }
         },
+        malus: function() {
+
+        },
+        deletation: function(carte) {
+            var tmp = [];
+            for (var i = 0; i < this.hand.length; i++) {
+                var c = this.hand[i];
+                if (!(c.value == carte.value && c.color == carte.color)) {
+                    tmp.push(c);
+                    c.droped = true;
+                    if (tmp.length == 1) {
+                        c.xInit = game.width * .5 - 192 * .5 - 192 / 2 * .25
+                        c.yInit = 585 - 279;
+                    }
+                    if (tmp.length == 2) {
+                        c.xInit = game.width * .5 - 192 * .5 + 192 / 2 * .25
+                        c.yInit = 585 - 279;
+                    }
+                    if (tmp.length == 3) {
+                        c.xInit = game.width * .5 - 192 * .5 - 192 / 2 * .25
+                        c.yInit = 585 - 279 + 279 * .25;
+                    }
+                    if (tmp.length == 4) {
+                        c.xInit = game.width * .5 - 192 * .5 + 192 / 2 * .25
+                        c.yInit = 585 - 279 + 279 * .25;
+                    }
+                }
+            }
+            this.hand = tmp;
+        },
         drop: function(carte) {
             if (carte.hand) {
                 if (this.carpet.stack.length > 0) {
@@ -78,8 +108,9 @@ window.onload = function() {
                         carte.droped = true;
                         carte.show();
                         this.carpet.push(carte);
+                        this.deletation(carte);
                     } else {
-
+                        this.malus();
                     }
                 }
 
