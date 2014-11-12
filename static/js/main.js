@@ -91,7 +91,7 @@ window.onload = function() {
                         carte.hand = false;
                         carte.droped = true;
                         carte.show();
-                        this.carpet.push(carte);
+                        this.carpet.stack.push(carte);
                         this.deletation(carte);
                     } else {
                         this.malus();
