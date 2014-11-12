@@ -239,7 +239,9 @@ window.onload = function() {
                 this.timeVisible -= 1 / game.fps;
                 this.show();
                 if (this.timeVisible <= 0) {
-                    this.hide();
+                    if (this.hiden) {
+                        this.hide();
+                    }
                 }
             }
         },
