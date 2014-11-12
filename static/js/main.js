@@ -46,8 +46,8 @@ window.onload = function() {
             this.hand = [];
             this.hand.push(new Carte(true, this, game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279, 1, 0, true));
             this.hand.push(new Carte(true, this, game.width * .5 - 192 * .5 + 192 / 2 * .25, 585 - 279, 5, 2, true));
-            this.hand.push(new Carte(true, this, game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279 + 279 * .25, 8, 1, false));
-            this.hand.push(new Carte(true, this, game.width * .5 - 192 * .5 + 192 / 2 * .25, 585 - 279 + 279 *.25, 1, 3, false));
+            this.hand.push(new Carte(true, this, game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279 + 279 * .25, 8, 1, true));
+            this.hand.push(new Carte(true, this, game.width * .5 - 192 * .5 + 192 / 2 * .25, 585 - 279 + 279 *.25, 1, 3, true));
             this.addChild(this.hand[0]);
             this.addChild(this.hand[1]);
             this.addChild(this.hand[2]);
@@ -217,7 +217,9 @@ window.onload = function() {
                 this.timeVisible -= 1 / game.fps;
                 this.show();
             } else {
-                this.hide();
+                if (this.hiden) {
+                    this.hide();
+                }
             }
         },
         updateAnimation: function (evt) {
