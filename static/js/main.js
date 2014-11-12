@@ -169,8 +169,8 @@ window.onload = function() {
         },
         tick: function (evt) {
             if (this.droped) {
-                this.x += (this.xInit - this.x) / 100;
-                this.y += (this.yInit - this.y) / 100;
+                this.x += (this.xInit - this.x) / 5;
+                this.y += (this.yInit - this.y) / 5;
             }
         },
         updateAnimation: function (evt) {
