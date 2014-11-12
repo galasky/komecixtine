@@ -43,7 +43,7 @@ window.onload = function() {
             this.addChild(this.stack);
             this.addChild(this.carpet);
             this.hand = [];
-            this.hand.push(new Carte(true, this, game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279, 2, 0, true));
+            this.hand.push(new Carte(true, this, game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279, 1, 0, true));
             this.hand.push(new Carte(true, this, game.width * .5 - 192 * .5 + 192 / 2 * .25, 585 - 279, 5, 2, true));
             this.hand.push(new Carte(true, this, game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279 + 279 * .25, 8, 1, false));
             this.hand.push(new Carte(true, this, game.width * .5 - 192 * .5 + 192 / 2 * .25, 585 - 279 + 279 *.25, 1, 3, false));
