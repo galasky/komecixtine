@@ -238,7 +238,7 @@ window.onload = function() {
             }
             if (this.timeVisible > 0) {
                 this.timeVisible -= 1 / game.fps;
-                this.show();
+                this.frame = this.value + 13 * this.color;
                 if (this.timeVisible <= 0) {
                     if (this.hiden) {
                         this.hide();
