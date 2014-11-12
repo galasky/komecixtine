@@ -149,8 +149,8 @@ window.onload = function() {
             this.addEventListener(Event.TOUCH_START, this.touch);
             this.addEventListener(Event.TOUCH_MOVE, this.move);
             this.addEventListener(Event.TOUCH_END, this.end);
-            this.addEventListener(Event.ACTION_TICK, this.tick);
-//            this.addEventListener(Event.ENTER_FRAME, this.updateAnimation);
+//            this.addEventListener(Event.ACTION_TICK, this.tick);
+            this.addEventListener(Event.ENTER_FRAME, this.tick);
         },
         touch: function(evt) {
             this.scene.up(this);
