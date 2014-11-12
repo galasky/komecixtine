@@ -217,10 +217,7 @@ window.onload = function() {
                 this.timeVisible -= 1 / game.fps;
                 this.show();
             } else {
-                if (this.hiden) {
-                    this.hide();
-                }
-
+                this.hide();
             }
         },
         updateAnimation: function (evt) {
