@@ -99,7 +99,7 @@ window.onload = function() {
                     this.pioched.timeVisible = 2;
                     this.pioched.xInit = c.xInit;
                     this.pioched.yInit = c.yInit;
-                    this.hand = true;
+                    this.pioched.hand = true;
                     this.pioched = null;
                 }
             }
