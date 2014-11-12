@@ -216,8 +216,7 @@ window.onload = function() {
             if (this.timeVisible > 0) {
                 this.timeVisible -= 1 / game.fps;
                 this.show();
-            } else {
-                if (this.hiden) {
+                if (this.timeVisible <= 0) {
                     this.hide();
                 }
             }
