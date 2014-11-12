@@ -56,7 +56,9 @@ window.onload = function() {
 //            this.addEventListener(Event.TOUCH_END, this.handleEndControl);
         },
         pioche: function() {
-            var c = new Carte(false, this, game.width * .5 - 192 * .5 - 192 / 2 * .25, game.height * .25 - 279 * .25, 1, 3, false);
+            var c = new Carte(false, this, game.width * .5 - 192 * .5 - 192 / 2 * .25, game.height * .25, 1, 3, false);
+            c.yInit -=  279 * .25;
+            c.droped = true;
             this.addChild(c);
         },
         drop: function(carte) {
