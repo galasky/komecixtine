@@ -73,6 +73,7 @@ window.onload = function() {
             var m = new Carte(true, this, game.width * .5 - 192 * .5 - 192 / 2 * .25, game.height * .25, 1, 3, true);
             m.droped = true;
             this.hand.push(m);
+            this.addChild(m);
             m.xInit = game.width * .5 - 192 * .5 + 192 / 2 * .25 + 192 * .25 * this.malu;
             m.yInit = 585 - 279;
             console.log("malus");
