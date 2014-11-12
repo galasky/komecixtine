@@ -42,6 +42,7 @@ window.onload = function() {
             this.carpet = new Carpet(this, game.width * .5 - 192 * .5 - 192 / 2 * .25 + 192 *.25, game.height * .25);
             this.addChild(this.stack);
             this.addChild(this.carpet);
+            this.malu = 0;
             this.hand = [];
             this.hand.push(new Carte(true, this, game.width * .5 - 192 * .5 - 192 / 2 * .25, 585 - 279, 1, 0, true));
             this.hand.push(new Carte(true, this, game.width * .5 - 192 * .5 + 192 / 2 * .25, 585 - 279, 5, 2, true));
@@ -68,7 +69,12 @@ window.onload = function() {
             }
         },
         malus: function() {
-
+            this.malu++;
+            var m = new Carte(true, this, game.width * .5 - 192 * .5 - 192 / 2 * .25, game.height * .25, 1, 3, false);
+            m.droped = true;
+            this.hand.push(m);
+            m.xInit = game.width * .5 - 192 * .5 + 192 / 2 * .25 + 192 * .25 * this.malu;
+            m.yInit = 585 - 279;
         },
         deletation: function(carte) {
             var tmp = [];
