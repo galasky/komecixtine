@@ -63,6 +63,7 @@ window.onload = function() {
                 var c = new Carte(false, this, game.width * .5 - 192 * .5 - 192 / 2 * .25, game.height * .25, 1, 3, false);
                 c.yInit -=  279 * .25;
                 c.droped = true;
+                c.pioche = true;
                 this.addChild(c);
             }
         },
@@ -86,7 +87,10 @@ window.onload = function() {
                 carte.yInit = this.scene.carpet.y;
                 carte.hand = false;
                 carte.show();
-                this.carpet.push(carte);
+                this.carpet.stack.push(carte);
+            }
+            if (carte.pioche == true) {
+                this.pioched = false;
             }
         },
         up: function(node) {
@@ -134,6 +138,7 @@ window.onload = function() {
             this.image = Game.instance.assets['/static/res/cards.jpg'];
             this.droped = false;
             this.hand = hand;
+            this.pioche = false;
             this.scene = scene;
             this.animationDuration = 0;
             this.select = false;
