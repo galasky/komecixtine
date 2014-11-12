@@ -52,6 +52,8 @@ window.onload = function() {
             this.addChild(this.hand[1]);
             this.addChild(this.hand[2]);
             this.addChild(this.hand[3]);
+            this.hand[2].timeVisible = 5;
+            this.hand[3].timeVisible = 5;
 //            this.addChild(this.hands);
 
 //            this.addChild(label);
@@ -102,6 +104,7 @@ window.onload = function() {
                         this.carpet.stack.push(carte);
                         this.deletation(carte);
                     } else {
+                        carte.timeVisible = 3;
                         this.malus();
                     }
                 }
@@ -159,6 +162,7 @@ window.onload = function() {
         initialize: function(hand, scene, x, y, value, color, hiden) {
             // 1 - Call superclass constructor
             Sprite.apply(this,[192, 279]);
+            this.timeVisible = 0;
             this.image = Game.instance.assets['/static/res/cards.jpg'];
             this.droped = false;
             this.hand = hand;
@@ -208,6 +212,12 @@ window.onload = function() {
             if (this.droped) {
                 this.x += (this.xInit - this.x) / 5;
                 this.y += (this.yInit - this.y) / 5;
+            }
+            if (this.timeVisible > 0) {
+                this.timeVisible -= 1 / game.fps;
+                this.show();
+            } else {
+                this.hiden();
             }
         },
         updateAnimation: function (evt) {
