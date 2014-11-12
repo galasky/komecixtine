@@ -35,6 +35,7 @@ window.onload = function() {
             bg = new Sprite(600, 585);
             bg.image = game.assets['/static/res/tapis.jpg'];
 
+            this.pioched = false;
             // 4 - Add child nodes
             this.addChild(bg);
             this.stack = new Stack(this, game.width * .5 - 192 * .5 - 192 / 2 * .25, game.height * .25);
@@ -57,16 +58,36 @@ window.onload = function() {
 //            this.addEventListener(Event.TOUCH_END, this.handleEndControl);
         },
         pioche: function() {
-            var c = new Carte(false, this, game.width * .5 - 192 * .5 - 192 / 2 * .25, game.height * .25, 1, 3, false);
-            c.yInit -=  279 * .25;
-            c.droped = true;
-            this.addChild(c);
+            if (!this.pioched) {
+                this.pioched = true;
+                var c = new Carte(false, this, game.width * .5 - 192 * .5 - 192 / 2 * .25, game.height * .25, 1, 3, false);
+                c.yInit -=  279 * .25;
+                c.droped = true;
+                this.addChild(c);
+            }
         },
         drop: function(carte) {
-            carte.xInit = this.scene.carpet.x;
-            carte.yInit = this.scene.carpet.y;
-            carte.hand = false;
-            carte.show();
+            if (carte.hand) {
+                if (this.carpet.stack.length > 0) {
+                    var last = this.carpet.stack[this.carpet.stack.length - 1];
+                    if (carte.value == last.value) {
+                        carte.xInit = this.scene.carpet.x;
+                        carte.yInit = this.scene.carpet.y;
+                        carte.hand = false;
+                        carte.show();
+                        this.carpet.push(carte);
+                    } else {
+
+                    }
+                }
+
+            } else {
+                carte.xInit = this.scene.carpet.x;
+                carte.yInit = this.scene.carpet.y;
+                carte.hand = false;
+                carte.show();
+                this.carpet.push(carte);
+            }
         },
         up: function(node) {
             this.removeChild(node);
@@ -97,6 +118,7 @@ window.onload = function() {
             Sprite.apply(this,[192, 279]);
             this.image = Game.instance.assets['/static/res/cards.jpg'];
             this.frame = 55;
+            this.stack = [];
             this.scene = scene;
             this.x = x;
             this.y = y;
