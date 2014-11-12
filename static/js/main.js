@@ -75,6 +75,7 @@ window.onload = function() {
                         carte.xInit = this.scene.carpet.x;
                         carte.yInit = this.scene.carpet.y;
                         carte.hand = false;
+                        carte.droped = true;
                         carte.show();
                         this.carpet.push(carte);
                     } else {
