@@ -97,8 +97,8 @@ window.onload = function() {
                 if ((c.value == carte.value && c.color == carte.color)) {
                     this.hand[i] = this.pioched;
                     this.pioched.timeVisible = 2;
-                    this.pioched.xInit = c.x;
-                    this.pioched.yInit = c.y;
+                    this.pioched.xInit = c.xInit;
+                    this.pioched.yInit = c.yInit;
                     this.hand = true;
                     this.pioched = null;
                 }
