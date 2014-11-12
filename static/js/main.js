@@ -35,7 +35,7 @@ window.onload = function() {
             bg = new Sprite(600, 585);
             bg.image = game.assets['/static/res/tapis.jpg'];
 
-            this.pioched = false;
+            this.pioched = null;
             // 4 - Add child nodes
             this.addChild(bg);
             this.stack = new Stack(this, game.width * .5 - 192 * .5 - 192 / 2 * .25, game.height * .25);
@@ -61,13 +61,13 @@ window.onload = function() {
 //            this.addEventListener(Event.TOUCH_END, this.handleEndControl);
         },
         pioche: function() {
-            if (!this.pioched) {
-                this.pioched = true;
+            if (this.pioched == null) {
                 var c = new Carte(false, this, game.width * .5 - 192 * .5 - 192 / 2 * .25, game.height * .25, 1, 3, false);
                 c.yInit -=  279 * .25;
                 c.droped = true;
                 c.pioche = true;
                 this.addChild(c);
+                this.pioched = c;
             }
         },
         malus: function() {
@@ -91,24 +91,45 @@ window.onload = function() {
             this.hand = tmp;
             console.log(this.hand);
         },
+        reverse: function(carte) {
+            for (var i = 0; i < this.hand.length; i++) {
+                var c = this.hand[i];
+                if ((c.value == carte.value && c.color == carte.color)) {
+                    this.hand[i] = this.pioched;
+                    this.pioched.timeVisible = 2;
+                    this.pioched.xInit = c.x;
+                    this.pioched.yInit = c.y;
+                    this.hand = true;
+                    this.pioched = null;
+                }
+            }
+            carte.xInit = this.scene.carpet.x;
+            carte.yInit = this.scene.carpet.y;
+            carte.hand = false;
+            carte.show();
+            this.carpet.stack.push(carte);
+        },
         drop: function(carte) {
             if (carte.hand) {
-                if (this.carpet.stack.length > 0) {
-                    var last = this.carpet.stack[this.carpet.stack.length - 1];
-                    if (carte.value == last.value) {
-                        carte.xInit = this.scene.carpet.x;
-                        carte.yInit = this.scene.carpet.y;
-                        carte.hand = false;
-                        carte.droped = true;
-                        carte.show();
-                        this.carpet.stack.push(carte);
-                        this.deletation(carte);
-                    } else {
-                        carte.timeVisible = 3;
-                        this.malus();
+                if (this.pioched != null) {
+                    this.reverse(carte);
+                } else {
+                    if (this.carpet.stack.length > 0) {
+                        var last = this.carpet.stack[this.carpet.stack.length - 1];
+                        if (carte.value == last.value) {
+                            carte.xInit = this.scene.carpet.x;
+                            carte.yInit = this.scene.carpet.y;
+                            carte.hand = false;
+                            carte.droped = true;
+                            carte.show();
+                            this.carpet.stack.push(carte);
+                            this.deletation(carte);
+                        } else {
+                            carte.timeVisible = 3;
+                            this.malus();
+                        }
                     }
                 }
-
             } else {
                 carte.xInit = this.scene.carpet.x;
                 carte.yInit = this.scene.carpet.y;
@@ -117,7 +138,7 @@ window.onload = function() {
                 this.carpet.stack.push(carte);
             }
             if (carte.pioche == true) {
-                this.pioched = false;
+                this.pioched = null;
             }
         },
         up: function(node) {
