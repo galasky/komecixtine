@@ -126,6 +126,7 @@ window.onload = function() {
             // 1 - Call superclass constructor
             Sprite.apply(this,[192, 279]);
             this.image = Game.instance.assets['/static/res/cards.jpg'];
+            this.droped = false;
             this.hand = hand;
             this.scene = scene;
             this.animationDuration = 0;
@@ -148,10 +149,12 @@ window.onload = function() {
             this.addEventListener(Event.TOUCH_START, this.touch);
             this.addEventListener(Event.TOUCH_MOVE, this.move);
             this.addEventListener(Event.TOUCH_END, this.end);
+            this.addEventListener(Event.ACTION_TICK, this.tick);
 //            this.addEventListener(Event.ENTER_FRAME, this.updateAnimation);
         },
         touch: function(evt) {
             this.scene.up(this);
+            this.droped = false;
         },
         move: function(evt) {
             this.select = true;
@@ -162,8 +165,13 @@ window.onload = function() {
             if(this.within(this.scene.carpet, 192 * .25)) {
                 this.scene.drop(this);
             }
-            this.x = this.xInit;
-            this.y = this.yInit;
+            this.droped = true;
+        },
+        tick: function (evt) {
+            if (this.droped) {
+                this.x += (this.xInit - this.x) / 10;
+                this.y += (this.yInit - this.y) / 10;
+            }
         },
         updateAnimation: function (evt) {
             this.animationDuration += evt.elapsed * 0.001;
