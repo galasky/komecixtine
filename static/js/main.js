@@ -6,8 +6,8 @@ window.onload = function() {
     // 3 - Starting point
     var game = new Game(600, 585);
     // 4 - Preload resources
-    game.preload('./static/res/tapis.jpg',
-        './static/res/cards.jpg');
+    game.preload('/static/res/tapis.jpg',
+        '/static/res/cards.jpg');
     // 5 - Game settings
     game.fps = 60;
     game.scale = 1;
@@ -33,7 +33,7 @@ window.onload = function() {
             // 3 - Create child nodes
             label = new Label("Hi, Ocean!");
             bg = new Sprite(600, 585);
-            bg.image = game.assets['./static/res/tapis.jpg'];
+            bg.image = game.assets['/static/res/tapis.jpg'];
 
             this.pioched = null;
             // 4 - Add child nodes
@@ -151,7 +151,7 @@ window.onload = function() {
     var Stack = Class.create(Sprite, {
         initialize: function(scene, x, y) {
             Sprite.apply(this,[192, 279]);
-            this.image = Game.instance.assets['./static/res/cards.jpg'];
+            this.image = Game.instance.assets['/static/res/cards.jpg'];
             this.frame = 54;
             this.scene = scene;
             this.x = x;
