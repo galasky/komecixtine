@@ -5,7 +5,7 @@ var express = require('express'),
     TwitterStrategy = require('passport-twitter'),
     GoolgeStrategy = require('passport-google'),
     FacebookStrategy = require('passport-facebook');
-var config = require('./config.js'), //config file contains all tokens and other private info
+//var config = require('./config.js'), //config file contains all tokens and other private info
     funct = require('./functions.js');
 var app = express();
 //===============PASSPORT=================
